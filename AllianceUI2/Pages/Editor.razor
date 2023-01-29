@@ -38,6 +38,8 @@
     </div>
     <div class="row px-3">
         <div class="col-md-6 col-lg-12 p-3">
+            <RadzenButton Click=@(args => NewRank()) Text="Create Rank" ButtonStyle="ButtonStyle.Primary" />
+
             <DataGrid TItem="AlliancesPlugin.Alliances.RankPermissions"
                       Data="@alliance.CustomRankPermissions.Values.OrderByDescending(x => x.permissionLevel)"
                       EditMode="Blazorise.DataGrid.DataGridEditMode.Popup"
@@ -47,29 +49,33 @@
                       Responsive="true"
                       Sortable="true"
                       Striped="true"
-                      Filterable="true" PopupSize="Blazorise.ModalSize.ExtraLarge">
+                      PageSize="50"
+                     
+                      Filterable="true" PopupSize="Blazorise.ModalSize.ExtraLarge" @ref="GridRef" RowRemoved="@Delete">
                 <ChildContent>
-                    <DataGridCommandColumn TItem="AlliancesPlugin.Alliances.RankPermissions"></DataGridCommandColumn>
-                    <DataGridColumn TItem="AlliancesPlugin.Alliances.RankPermissions" Field="RankName" Caption="Rank Name" Editable="true"/>
+                    <DataGridCommandColumn TItem="AlliancesPlugin.Alliances.RankPermissions" DeleteCommandAllowed="true">
+
+                    </DataGridCommandColumn>
+                    <DataGridColumn TItem="AlliancesPlugin.Alliances.RankPermissions" Field="RankName" Caption="Rank Name" Editable="true" />
                     <DataGridColumn TItem="AlliancesPlugin.Alliances.RankPermissions" Field="taxRate" Caption="Tax Rate" Editable="true" />
                     <DataGridColumn TItem="AlliancesPlugin.Alliances.RankPermissions" Field="permissionLevel" Caption="Permission Level" Editable="true" />
                     <DataGridColumn TItem="AlliancesPlugin.Alliances.RankPermissions" Field="permissions" Caption="Permissions" Editable="true" Displayable="false" Width="200%" PopupFieldColumnSize="@(Blazorise.ColumnSize.IsFull as Blazorise.IFluentColumn)">
-                  
+
                         <EditTemplate>
 
-                                <div class="row px-3">
-                            @foreach (var item in Permissions)
-                            {
-                                <div class="col-md-12 col-lg-3 p-3">
-                                <RadzenCard>
-                                    <RadzenCheckBox Value="@context.Item.permissions.Contains(item)" Name="@item.ToString()" TValue="bool" Change=@(args => OnChange(args, item, context)) />
-                                    <RadzenLabel Text="@item.ToString()" Component="@item.ToString()" Style="margin-left: 8px; vertical-align: middle;" />
-                                </RadzenCard>
-                                </div>
-                            }
+                            <div class="row px-3">
+                                @foreach (var item in Permissions)
+                                {
+                                    <div class="col-md-12 col-lg-3 p-3">
+                                        <RadzenCard>
+                                            <RadzenCheckBox Value="@context.Item.permissions.Contains(item)" Name="@item.ToString()" TValue="bool" Change=@(args => OnChange(args, item, context)) />
+                                            <RadzenLabel Text="@item.ToString()" Component="@item.ToString()" Style="margin-left: 8px; vertical-align: middle;" />
+                                        </RadzenCard>
+                                    </div>
+                                }
                             </div>
                         </EditTemplate>
-                   
+
                     </DataGridColumn>
                 </ChildContent>
             </DataGrid>
@@ -81,7 +87,31 @@
 @code {
     List<AlliancesPlugin.Alliances.AccessLevel> Permissions = new List<AlliancesPlugin.Alliances.AccessLevel>();
 
-  //  public IFluentColumn column;
+    //  public IFluentColumn column;
+
+    public async Task NewRank()
+    {
+        var newRank = new AlliancesPlugin.Alliances.RankPermissions()
+            {
+                RankName = $"new{NewCount}",
+                permissions = new List<AlliancesPlugin.Alliances.AccessLevel>(),
+                Key = $"new{NewCount}"
+            };
+        alliance.CustomRankPermissions.Add($"new{NewCount}", newRank);
+        NewCount++;
+        GridRef.ClearFilter();
+        await InvokeAsync(StateHasChanged);
+    }
+
+    public async Task Delete(AlliancesPlugin.Alliances.RankPermissions rank){
+        alliance.CustomRankPermissions.Remove(rank.Key);
+        GridRef.ClearFilter();
+
+    }
+ 
+    public DataGrid<AlliancesPlugin.Alliances.RankPermissions> GridRef { get; set; }
+
+    public int NewCount = 1;
 
     [Parameter]
     public Guid Id { get; set; }
