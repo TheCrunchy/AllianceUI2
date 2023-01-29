@@ -1,0 +1,128 @@
+﻿@using AlliancesPlugin;
+@using Data;
+@page "/alliances/edit/{Id:guid}"
+
+<PageTitle>Alliance Editor</PageTitle>
+<div class="container-fluid">
+    @*    <RadzenCard>
+    <RadzenText TextStyle="TextStyle.H4" TagName="TagName.H4" TextAlign="TextAlign.Center">Edit Id</RadzenText>
+    <RadzenText TextStyle="TextStyle.H5" TagName="TagName.H5" TextAlign="TextAlign.Center" contenteditable="false">@Id</RadzenText>
+    </RadzenCard>*@
+    <div class="row px-3">
+        <div class="col-md-6 col-lg-4 p-3">
+            <RadzenCard>
+                <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H4">Alliance Name</RadzenText>
+                <RadzenTextBox @bind-Value="@alliance.name" Class="w-100" />
+            </RadzenCard>
+        </div>
+        <div class="col-md-6 col-lg-4 p-3">
+            <RadzenCard>
+                <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H4">Leader Title</RadzenText>
+                <RadzenTextBox @bind-Value="@alliance.LeaderTitle" Class="w-100" />
+            </RadzenCard>
+        </div>
+        <div class="col-md-6 col-lg-4 p-3">
+            <RadzenCard>
+                <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H4">Leader Tax Rate</RadzenText>
+                <RadzenNumeric @bind-Value="@alliance.leadertax" Class="w-100" />
+            </RadzenCard>
+        </div>
+    </div>
+    <div class="row px-3">
+        <div class="col-md-6 col-lg-12 p-3">
+            <RadzenCard>
+                <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H4">Description</RadzenText>
+                <RadzenTextArea @bind-Value="@alliance.description" Class="w-100" />
+            </RadzenCard>
+        </div>
+    </div>
+    <div class="row px-3">
+        <div class="col-md-6 col-lg-12 p-3">
+            <DataGrid TItem="AlliancesPlugin.Alliances.RankPermissions"
+                      Data="@alliance.CustomRankPermissions.Values.OrderByDescending(x => x.permissionLevel)"
+                      EditMode="Blazorise.DataGrid.DataGridEditMode.Popup"
+                      ShowPager="false"
+                      ShowPageSizes="false"
+                      Editable="true"
+                      Responsive="true"
+                      Sortable="true"
+                      Striped="true"
+                      Filterable="true" PopupSize="Blazorise.ModalSize.ExtraLarge">
+                <ChildContent>
+                    <DataGridCommandColumn TItem="AlliancesPlugin.Alliances.RankPermissions"></DataGridCommandColumn>
+                    <DataGridColumn TItem="AlliancesPlugin.Alliances.RankPermissions" Field="RankName" Caption="Rank Name" Editable="true"/>
+                    <DataGridColumn TItem="AlliancesPlugin.Alliances.RankPermissions" Field="taxRate" Caption="Tax Rate" Editable="true" />
+                    <DataGridColumn TItem="AlliancesPlugin.Alliances.RankPermissions" Field="permissionLevel" Caption="Permission Level" Editable="true" />
+                    <DataGridColumn TItem="AlliancesPlugin.Alliances.RankPermissions" Field="permissions" Caption="Permissions" Editable="true" Displayable="false" Width="200%" PopupFieldColumnSize="@(Blazorise.ColumnSize.IsFull as Blazorise.IFluentColumn)">
+                  
+                        <EditTemplate>
+
+                                <div class="row px-3">
+                            @foreach (var item in Permissions)
+                            {
+                                <div class="col-md-12 col-lg-3 p-3">
+                                <RadzenCard>
+                                    <RadzenCheckBox Value="@context.Item.permissions.Contains(item)" Name="@item.ToString()" TValue="bool" Change=@(args => OnChange(args, item, context)) />
+                                    <RadzenLabel Text="@item.ToString()" Component="@item.ToString()" Style="margin-left: 8px; vertical-align: middle;" />
+                                </RadzenCard>
+                                </div>
+                            }
+                            </div>
+                        </EditTemplate>
+                   
+                    </DataGridColumn>
+                </ChildContent>
+            </DataGrid>
+
+        </div>
+    </div>
+</div>
+<RadzenButton Click=@(args => Clicked()) Text="Save" ButtonStyle="ButtonStyle.Success" />
+@code {
+    List<AlliancesPlugin.Alliances.AccessLevel> Permissions = new List<AlliancesPlugin.Alliances.AccessLevel>();
+
+  //  public IFluentColumn column;
+
+    [Parameter]
+    public Guid Id { get; set; }
+
+    public AlliancesPlugin.Alliances.Alliance alliance { get; set; }
+
+    public RadzenDataGrid<AlliancesPlugin.Alliances.RankPermissions> Grid { get; set; }
+
+    void OnChange(bool? value, AlliancesPlugin.Alliances.AccessLevel level, CellEditContext<AlliancesPlugin.Alliances.RankPermissions> cell)
+    {
+        if (cell.Item.permissions.Contains(level))
+        {
+            cell.Item.permissions.Remove(level);
+        }
+        else
+        {
+            cell.Item.permissions.Add(level);
+        }
+
+    }
+
+    [Inject]
+    private DataService dataService { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var temp = dataService.GetData(Id);
+        alliance = temp;
+        Permissions.Clear();
+        var perms = Enum.GetValues(typeof(AlliancesPlugin.Alliances.AccessLevel));
+        foreach (AlliancesPlugin.Alliances.AccessLevel perm in perms)
+        {
+            Permissions.Add(perm);
+        }
+
+        return;
+    }
+
+    public async Task Clicked()
+    {
+        return;
+    }
+
+}

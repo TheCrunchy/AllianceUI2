@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Blazorise.Bootstrap" Version="1.1.6" />
+    <PackageReference Include="Blazorise.Components" Version="1.1.6" />
+    <PackageReference Include="Blazorise.DataGrid" Version="1.1.6" />
+    <PackageReference Include="Blazorise.Icons.FontAwesome" Version="1.1.6" />
+    <PackageReference Include="Radzen.Blazor" Version="4.6.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="AlliancesPlugin">
+      <HintPath>..\..\AlliancesPlugin\AlliancesPlugin\bin\Debug\AlliancesPlugin.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

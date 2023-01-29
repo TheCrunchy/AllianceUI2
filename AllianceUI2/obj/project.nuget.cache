@@ -1,0 +1,33 @@
+{
+  "version": 2,
+  "dgSpecHash": "I2tmVbhep5Qtl6k1QKKl7Rub3CvysdHB3B2T1waRUUT6TzKDs5wsmorc+XLVxpihkm1TnChEItzNoU1OPquQwQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Cameron\\Documents\\3 Torch Plugins\\AllianceUI2\\AllianceUI2\\AllianceUI2.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Cameron\\.nuget\\packages\\blazorise\\1.1.6\\blazorise.1.1.6.nupkg.sha512",
+    "C:\\Users\\Cameron\\.nuget\\packages\\blazorise.bootstrap\\1.1.6\\blazorise.bootstrap.1.1.6.nupkg.sha512",
+    "C:\\Users\\Cameron\\.nuget\\packages\\blazorise.components\\1.1.6\\blazorise.components.1.1.6.nupkg.sha512",
+    "C:\\Users\\Cameron\\.nuget\\packages\\blazorise.datagrid\\1.1.6\\blazorise.datagrid.1.1.6.nupkg.sha512",
+    "C:\\Users\\Cameron\\.nuget\\packages\\blazorise.icons.fontawesome\\1.1.6\\blazorise.icons.fontawesome.1.1.6.nupkg.sha512",
+    "C:\\Users\\Cameron\\.nuget\\packages\\blazorise.snackbar\\1.1.6\\blazorise.snackbar.1.1.6.nupkg.sha512",
+    "C:\\Users\\Cameron\\.nuget\\packages\\libsassbuilder\\2.0.1\\libsassbuilder.2.0.1.nupkg.sha512",
+    "C:\\Users\\Cameron\\.nuget\\packages\\microsoft.aspnetcore.authorization\\6.0.9\\microsoft.aspnetcore.authorization.6.0.9.nupkg.sha512",
+    "C:\\Users\\Cameron\\.nuget\\packages\\microsoft.aspnetcore.components\\6.0.9\\microsoft.aspnetcore.components.6.0.9.nupkg.sha512",
+    "C:\\Users\\Cameron\\.nuget\\packages\\microsoft.aspnetcore.components.analyzers\\6.0.9\\microsoft.aspnetcore.components.analyzers.6.0.9.nupkg.sha512",
+    "C:\\Users\\Cameron\\.nuget\\packages\\microsoft.aspnetcore.components.forms\\6.0.9\\microsoft.aspnetcore.components.forms.6.0.9.nupkg.sha512",
+    "C:\\Users\\Cameron\\.nuget\\packages\\microsoft.aspnetcore.components.web\\6.0.9\\microsoft.aspnetcore.components.web.6.0.9.nupkg.sha512",
+    "C:\\Users\\Cameron\\.nuget\\packages\\microsoft.aspnetcore.metadata\\6.0.9\\microsoft.aspnetcore.metadata.6.0.9.nupkg.sha512",
+    "C:\\Users\\Cameron\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
+    "C:\\Users\\Cameron\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\6.0.0\\microsoft.extensions.dependencyinjection.6.0.0.nupkg.sha512",
+    "C:\\Users\\Cameron\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\6.0.0\\microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512",
+    "C:\\Users\\Cameron\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\6.0.3\\microsoft.extensions.logging.abstractions.6.0.3.nupkg.sha512",
+    "C:\\Users\\Cameron\\.nuget\\packages\\microsoft.extensions.options\\6.0.0\\microsoft.extensions.options.6.0.0.nupkg.sha512",
+    "C:\\Users\\Cameron\\.nuget\\packages\\microsoft.extensions.primitives\\6.0.0\\microsoft.extensions.primitives.6.0.0.nupkg.sha512",
+    "C:\\Users\\Cameron\\.nuget\\packages\\microsoft.jsinterop\\6.0.9\\microsoft.jsinterop.6.0.9.nupkg.sha512",
+    "C:\\Users\\Cameron\\.nuget\\packages\\radzen.blazor\\4.6.3\\radzen.blazor.4.6.3.nupkg.sha512",
+    "C:\\Users\\Cameron\\.nuget\\packages\\system.io.pipelines\\6.0.3\\system.io.pipelines.6.0.3.nupkg.sha512",
+    "C:\\Users\\Cameron\\.nuget\\packages\\system.linq.dynamic.core\\1.2.22\\system.linq.dynamic.core.1.2.22.nupkg.sha512",
+    "C:\\Users\\Cameron\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

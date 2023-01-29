@@ -1,0 +1,1113 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "AllianceUI2/1.0.0": {
+        "dependencies": {
+          "Blazorise.Bootstrap": "1.1.6",
+          "Blazorise.Components": "1.1.6",
+          "Blazorise.DataGrid": "1.1.6",
+          "Blazorise.Icons.FontAwesome": "1.1.6",
+          "Radzen.Blazor": "4.6.3",
+          "AlliancesPlugin": "1.0.0.0"
+        },
+        "runtime": {
+          "AllianceUI2.dll": {}
+        }
+      },
+      "Blazorise/1.1.6": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Components": "6.0.9",
+          "Microsoft.AspNetCore.Components.Web": "6.0.9",
+          "Microsoft.Extensions.Logging.Abstractions": "6.0.3"
+        },
+        "runtime": {
+          "lib/net6.0/Blazorise.dll": {
+            "assemblyVersion": "1.1.6.0",
+            "fileVersion": "1.1.6.0"
+          }
+        }
+      },
+      "Blazorise.Bootstrap/1.1.6": {
+        "dependencies": {
+          "Blazorise": "1.1.6",
+          "Microsoft.AspNetCore.Components": "6.0.9",
+          "Microsoft.AspNetCore.Components.Web": "6.0.9",
+          "Microsoft.Extensions.Logging.Abstractions": "6.0.3"
+        },
+        "runtime": {
+          "lib/net6.0/Blazorise.Bootstrap.dll": {
+            "assemblyVersion": "1.1.6.0",
+            "fileVersion": "1.1.6.0"
+          }
+        }
+      },
+      "Blazorise.Components/1.1.6": {
+        "dependencies": {
+          "Blazorise": "1.1.6",
+          "Blazorise.Snackbar": "1.1.6",
+          "Microsoft.AspNetCore.Components": "6.0.9",
+          "Microsoft.AspNetCore.Components.Web": "6.0.9",
+          "Microsoft.Extensions.Logging.Abstractions": "6.0.3"
+        },
+        "runtime": {
+          "lib/net6.0/Blazorise.Components.dll": {
+            "assemblyVersion": "1.1.6.0",
+            "fileVersion": "1.1.6.0"
+          }
+        }
+      },
+      "Blazorise.DataGrid/1.1.6": {
+        "dependencies": {
+          "Blazorise": "1.1.6",
+          "Microsoft.AspNetCore.Components": "6.0.9",
+          "Microsoft.AspNetCore.Components.Web": "6.0.9",
+          "Microsoft.Extensions.Logging.Abstractions": "6.0.3"
+        },
+        "runtime": {
+          "lib/net6.0/Blazorise.DataGrid.dll": {
+            "assemblyVersion": "1.1.6.0",
+            "fileVersion": "1.1.6.0"
+          }
+        }
+      },
+      "Blazorise.Icons.FontAwesome/1.1.6": {
+        "dependencies": {
+          "Blazorise": "1.1.6",
+          "Microsoft.AspNetCore.Components": "6.0.9",
+          "Microsoft.AspNetCore.Components.Web": "6.0.9",
+          "Microsoft.Extensions.Logging.Abstractions": "6.0.3"
+        },
+        "runtime": {
+          "lib/net6.0/Blazorise.Icons.FontAwesome.dll": {
+            "assemblyVersion": "1.1.6.0",
+            "fileVersion": "1.1.6.0"
+          }
+        }
+      },
+      "Blazorise.Snackbar/1.1.6": {
+        "dependencies": {
+          "Blazorise": "1.1.6",
+          "Microsoft.AspNetCore.Components": "6.0.9",
+          "Microsoft.AspNetCore.Components.Web": "6.0.9",
+          "Microsoft.Extensions.Logging.Abstractions": "6.0.3"
+        },
+        "runtime": {
+          "lib/net6.0/Blazorise.Snackbar.dll": {
+            "assemblyVersion": "1.1.6.0",
+            "fileVersion": "1.1.6.0"
+          }
+        }
+      },
+      "LibSassBuilder/2.0.1": {},
+      "Microsoft.AspNetCore.Authorization/6.0.9": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Metadata": "6.0.9",
+          "Microsoft.Extensions.Logging.Abstractions": "6.0.3",
+          "Microsoft.Extensions.Options": "6.0.0"
+        },
+        "runtime": {
+          "lib/net6.0/Microsoft.AspNetCore.Authorization.dll": {
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.922.41926"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Components/6.0.9": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Authorization": "6.0.9",
+          "Microsoft.AspNetCore.Components.Analyzers": "6.0.9"
+        },
+        "runtime": {
+          "lib/net6.0/Microsoft.AspNetCore.Components.dll": {
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.922.41926"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Components.Analyzers/6.0.9": {},
+      "Microsoft.AspNetCore.Components.Forms/6.0.9": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Components": "6.0.9"
+        },
+        "runtime": {
+          "lib/net6.0/Microsoft.AspNetCore.Components.Forms.dll": {
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.922.41926"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Components.Web/6.0.9": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Components": "6.0.9",
+          "Microsoft.AspNetCore.Components.Forms": "6.0.9",
+          "Microsoft.Extensions.DependencyInjection": "6.0.0",
+          "Microsoft.JSInterop": "6.0.9",
+          "System.IO.Pipelines": "6.0.3"
+        },
+        "runtime": {
+          "lib/net6.0/Microsoft.AspNetCore.Components.Web.dll": {
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.922.41926"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Metadata/6.0.9": {
+        "runtime": {
+          "lib/net6.0/Microsoft.AspNetCore.Metadata.dll": {
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.922.41926"
+          }
+        }
+      },
+      "Microsoft.CSharp/4.7.0": {},
+      "Microsoft.Extensions.DependencyInjection/6.0.0": {
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "6.0.0",
+          "System.Runtime.CompilerServices.Unsafe": "6.0.0"
+        }
+      },
+      "Microsoft.Extensions.DependencyInjection.Abstractions/6.0.0": {},
+      "Microsoft.Extensions.Logging.Abstractions/6.0.3": {
+        "runtime": {
+          "lib/net6.0/Microsoft.Extensions.Logging.Abstractions.dll": {
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.1122.52304"
+          }
+        }
+      },
+      "Microsoft.Extensions.Options/6.0.0": {
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "6.0.0",
+          "Microsoft.Extensions.Primitives": "6.0.0"
+        }
+      },
+      "Microsoft.Extensions.Primitives/6.0.0": {
+        "dependencies": {
+          "System.Runtime.CompilerServices.Unsafe": "6.0.0"
+        }
+      },
+      "Microsoft.JSInterop/6.0.9": {
+        "runtime": {
+          "lib/net6.0/Microsoft.JSInterop.dll": {
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.922.41926"
+          }
+        }
+      },
+      "Radzen.Blazor/4.6.3": {
+        "dependencies": {
+          "LibSassBuilder": "2.0.1",
+          "Microsoft.AspNetCore.Components": "6.0.9",
+          "Microsoft.AspNetCore.Components.Web": "6.0.9",
+          "Microsoft.CSharp": "4.7.0",
+          "System.Linq.Dynamic.Core": "1.2.22"
+        },
+        "runtime": {
+          "lib/net6.0/Radzen.Blazor.dll": {
+            "assemblyVersion": "4.6.3.0",
+            "fileVersion": "4.6.3.0"
+          }
+        }
+      },
+      "System.IO.Pipelines/6.0.3": {
+        "runtime": {
+          "lib/net6.0/System.IO.Pipelines.dll": {
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.522.21309"
+          }
+        }
+      },
+      "System.Linq.Dynamic.Core/1.2.22": {
+        "runtime": {
+          "lib/net6.0/System.Linq.Dynamic.Core.dll": {
+            "assemblyVersion": "1.2.22.0",
+            "fileVersion": "1.2.22.0"
+          }
+        }
+      },
+      "System.Runtime.CompilerServices.Unsafe/6.0.0": {},
+      "AlliancesPlugin/1.0.0.0": {
+        "runtime": {
+          "AlliancesPlugin.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "Torch/1.3.1.149": {
+        "runtime": {
+          "Torch.dll": {
+            "assemblyVersion": "1.3.1.149",
+            "fileVersion": "1.3.1.149"
+          }
+        }
+      },
+      "Torch.API/1.3.1.149": {
+        "runtime": {
+          "Torch.API.dll": {
+            "assemblyVersion": "1.3.1.149",
+            "fileVersion": "1.3.1.149"
+          }
+        }
+      },
+      "NLog/4.0.0.0": {
+        "runtime": {
+          "NLog.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.4.5791.0"
+          }
+        }
+      },
+      "VRage.Game/1.0.0.0": {
+        "runtime": {
+          "VRage.Game.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "VRage.Math/1.0.0.0": {
+        "runtime": {
+          "VRage.Math.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "Sandbox.Game/0.1.1.0": {
+        "runtime": {
+          "Sandbox.Game.dll": {
+            "assemblyVersion": "0.1.1.0",
+            "fileVersion": "0.1.1.0"
+          }
+        }
+      },
+      "VRage.Library/1.0.0.0": {
+        "runtime": {
+          "VRage.Library.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "SpaceEngineers.Game/1.0.0.0": {
+        "runtime": {
+          "SpaceEngineers.Game.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "Sandbox.Common/1.0.0.0": {
+        "runtime": {
+          "Sandbox.Common.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "0Harmony/2.0.4.0": {
+        "runtime": {
+          "0Harmony.dll": {
+            "assemblyVersion": "2.0.4.0",
+            "fileVersion": "2.0.4.0"
+          }
+        }
+      },
+      "SpaceEngineers.ObjectBuilders/1.0.0.0": {
+        "runtime": {
+          "SpaceEngineers.ObjectBuilders.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "VRage/1.0.0.0": {
+        "runtime": {
+          "VRage.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "ProtoBuf.Net.Core/1.0.0.0": {
+        "runtime": {
+          "ProtoBuf.Net.Core.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "LiteDB/5.0.10.0": {
+        "runtime": {
+          "LiteDB.dll": {
+            "assemblyVersion": "5.0.10.0",
+            "fileVersion": "5.0.10.0"
+          }
+        }
+      },
+      "VRage.Render/1.0.0.0": {
+        "runtime": {
+          "VRage.Render.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "protobuf-net/2.4.0.0": {
+        "runtime": {
+          "protobuf-net.dll": {
+            "assemblyVersion": "2.4.0.0",
+            "fileVersion": "2.4.0.8641"
+          }
+        }
+      },
+      "Steamworks.NET/15.0.0.0": {
+        "runtime": {
+          "Steamworks.NET.dll": {
+            "assemblyVersion": "15.0.0.0",
+            "fileVersion": "15.0.0.0"
+          }
+        }
+      },
+      "SteamKit2/2.1.0.0": {
+        "runtime": {
+          "SteamKit2.dll": {
+            "assemblyVersion": "2.1.0.0",
+            "fileVersion": "2.1.0.627"
+          }
+        }
+      },
+      "VRage.Platform.Windows/1.0.0.0": {
+        "runtime": {
+          "VRage.Platform.Windows.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "VRage.Dedicated/1.0.0.0": {
+        "runtime": {
+          "VRage.Dedicated.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "VRage.Render11/1.0.0.0": {
+        "runtime": {
+          "VRage.Render11.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "Sandbox.Graphics/0.1.1.0": {
+        "runtime": {
+          "Sandbox.Graphics.dll": {
+            "assemblyVersion": "0.1.1.0",
+            "fileVersion": "0.1.1.0"
+          }
+        }
+      },
+      "HavokWrapper/0.1.1.0": {
+        "runtime": {
+          "HavokWrapper.dll": {
+            "assemblyVersion": "0.1.1.0",
+            "fileVersion": "0.1.1.0"
+          }
+        }
+      },
+      "VRage.NativeWrapper/0.1.1.0": {
+        "runtime": {
+          "VRage.NativeWrapper.dll": {
+            "assemblyVersion": "0.1.1.0",
+            "fileVersion": "0.1.1.0"
+          }
+        }
+      },
+      "VRage.Network/1.0.53.0": {
+        "runtime": {
+          "VRage.Network.dll": {
+            "assemblyVersion": "1.0.53.0",
+            "fileVersion": "1.0.53.0"
+          }
+        }
+      },
+      "VRage.Input/1.0.0.0": {
+        "runtime": {
+          "VRage.Input.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "VRage.UserInterface/1.0.0.0": {
+        "runtime": {
+          "VRage.UserInterface.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "EmptyKeys.UserInterface/3.2.0.0": {
+        "runtime": {
+          "EmptyKeys.UserInterface.dll": {
+            "assemblyVersion": "3.2.0.0",
+            "fileVersion": "3.2.0.0"
+          }
+        }
+      },
+      "EmptyKeys.UserInterface.Core/3.2.0.0": {
+        "runtime": {
+          "EmptyKeys.UserInterface.Core.dll": {
+            "assemblyVersion": "3.2.0.0",
+            "fileVersion": "3.2.0.0"
+          }
+        }
+      },
+      "Sandbox.RenderDirect/1.0.0.0": {
+        "runtime": {
+          "Sandbox.RenderDirect.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "RecastDetourWrapper/0.1.1.0": {
+        "runtime": {
+          "RecastDetourWrapper.dll": {
+            "assemblyVersion": "0.1.1.0",
+            "fileVersion": "0.1.1.0"
+          }
+        }
+      },
+      "SixLabors.ImageSharp/1.0.0.0": {
+        "runtime": {
+          "SixLabors.ImageSharp.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "SixLabors.Core/1.0.0.0": {
+        "runtime": {
+          "SixLabors.Core.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "SharpDX/4.2.0.0": {
+        "runtime": {
+          "SharpDX.dll": {
+            "assemblyVersion": "4.2.0.0",
+            "fileVersion": "4.2.0.0"
+          }
+        }
+      },
+      "SharpDX.DirectInput/4.2.0.0": {
+        "runtime": {
+          "SharpDX.DirectInput.dll": {
+            "assemblyVersion": "4.2.0.0",
+            "fileVersion": "4.2.0.0"
+          }
+        }
+      },
+      "VRage.NativeAftermath/0.0.0.0": {
+        "runtime": {
+          "VRage.NativeAftermath.dll": {
+            "assemblyVersion": "0.0.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "ProtoBuf.Net/1.0.0.0": {
+        "runtime": {
+          "ProtoBuf.Net.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "SharpDX.DXGI/4.2.0.0": {
+        "runtime": {
+          "SharpDX.DXGI.dll": {
+            "assemblyVersion": "4.2.0.0",
+            "fileVersion": "4.2.0.0"
+          }
+        }
+      },
+      "SharpDX.Direct3D11/4.2.0.0": {
+        "runtime": {
+          "SharpDX.Direct3D11.dll": {
+            "assemblyVersion": "4.2.0.0",
+            "fileVersion": "4.2.0.0"
+          }
+        }
+      },
+      "SharpDX.XInput/4.2.0.0": {
+        "runtime": {
+          "SharpDX.XInput.dll": {
+            "assemblyVersion": "4.2.0.0",
+            "fileVersion": "4.2.0.0"
+          }
+        }
+      },
+      "RestSharp/106.6.10.0": {
+        "runtime": {
+          "RestSharp.dll": {
+            "assemblyVersion": "106.6.10.0",
+            "fileVersion": "106.6.10.0"
+          }
+        }
+      },
+      "SharpDX.Desktop/4.2.0.0": {
+        "runtime": {
+          "SharpDX.Desktop.dll": {
+            "assemblyVersion": "4.2.0.0",
+            "fileVersion": "4.2.0.0"
+          }
+        }
+      },
+      "DirectShowLib/2.1.0.1599": {
+        "runtime": {
+          "DirectShowLib.dll": {
+            "assemblyVersion": "2.1.0.1599",
+            "fileVersion": "2.1.0.1599"
+          }
+        }
+      },
+      "VRage.Audio/1.0.0.0": {
+        "runtime": {
+          "VRage.Audio.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "SharpDX.XAudio2/4.2.0.0": {
+        "runtime": {
+          "SharpDX.XAudio2.dll": {
+            "assemblyVersion": "4.2.0.0",
+            "fileVersion": "4.2.0.0"
+          }
+        }
+      },
+      "GameAnalytics.Mono/1.0.7702.25490": {
+        "runtime": {
+          "GameAnalytics.Mono.dll": {
+            "assemblyVersion": "1.0.7702.25490",
+            "fileVersion": "1.0.7702.25490"
+          }
+        }
+      },
+      "VRage.Scripting/1.0.0.0": {
+        "runtime": {
+          "VRage.Scripting.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "VRage.Ansel/1.0.0.0": {
+        "runtime": {
+          "VRage.Ansel.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "VRage.RemoteClient.Core/1.0.0.0": {
+        "runtime": {
+          "VRage.RemoteClient.Core.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "SharpDX.D3DCompiler/4.2.0.0": {
+        "runtime": {
+          "SharpDX.D3DCompiler.dll": {
+            "assemblyVersion": "4.2.0.0",
+            "fileVersion": "4.2.0.0"
+          }
+        }
+      },
+      "System.Data.SQLite/1.0.102.0": {
+        "runtime": {
+          "System.Data.SQLite.dll": {
+            "assemblyVersion": "1.0.102.0",
+            "fileVersion": "1.0.102.0"
+          }
+        }
+      },
+      "Microsoft.CodeAnalysis.CSharp/2.9.0.0": {
+        "runtime": {
+          "Microsoft.CodeAnalysis.CSharp.dll": {
+            "assemblyVersion": "2.9.0.0",
+            "fileVersion": "2.9.0.63208"
+          }
+        }
+      },
+      "Microsoft.CodeAnalysis/2.9.0.0": {
+        "runtime": {
+          "Microsoft.CodeAnalysis.dll": {
+            "assemblyVersion": "2.9.0.0",
+            "fileVersion": "2.9.0.63208"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "AllianceUI2/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Blazorise/1.1.6": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-3DjOrI7J4MDsGeTYKgeA2P9wWk36zi4Fxf+zbRHRvztwPu9rLbWeI1oBzKq2eDDRNDirKbc+IGbccwxrblXM3A==",
+      "path": "blazorise/1.1.6",
+      "hashPath": "blazorise.1.1.6.nupkg.sha512"
+    },
+    "Blazorise.Bootstrap/1.1.6": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-bJVvDJr7GSI0MIXkLPBoE1OEI8mVRaWtcIk9t9tva/hktv2mrXjq7P/ovV1OsbRYlVpyPPVE6HB+fN/5CMUhsg==",
+      "path": "blazorise.bootstrap/1.1.6",
+      "hashPath": "blazorise.bootstrap.1.1.6.nupkg.sha512"
+    },
+    "Blazorise.Components/1.1.6": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-cZrDrD0wOdr9CiVFJNMSmDur0cb9M48PZq/cXv0+mb0DbLdCjhBn0c0tSws0UujWw68D/Zut92t1UnkFxALhdw==",
+      "path": "blazorise.components/1.1.6",
+      "hashPath": "blazorise.components.1.1.6.nupkg.sha512"
+    },
+    "Blazorise.DataGrid/1.1.6": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-DhKSp+kEmjkI3vEuQ+rHN/EQBleFykTaV05EKqnqKY9RcTAr5Tji0JFLkxm7psH3hPuU81eyzUrvIm51+ysrAg==",
+      "path": "blazorise.datagrid/1.1.6",
+      "hashPath": "blazorise.datagrid.1.1.6.nupkg.sha512"
+    },
+    "Blazorise.Icons.FontAwesome/1.1.6": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-bjUvnOa1Dj1idyyPLIcqqgsbLhkPy/zv5PXWsFOItgBuy8tQbWsmtJISf37MteSVSt6P6gac0whthv/X85ANVw==",
+      "path": "blazorise.icons.fontawesome/1.1.6",
+      "hashPath": "blazorise.icons.fontawesome.1.1.6.nupkg.sha512"
+    },
+    "Blazorise.Snackbar/1.1.6": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-anY+oojjrpdw590E8tPPtllbpa9Pj+Fn1pFL5f5qPGIEq5116AMmKIviO36fCqqwpSOSrFPC39MULzIxyijsNA==",
+      "path": "blazorise.snackbar/1.1.6",
+      "hashPath": "blazorise.snackbar.1.1.6.nupkg.sha512"
+    },
+    "LibSassBuilder/2.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-f+7TWQtCirW94VdzKL9SaAfeSF96TeEqdtDztmTGbndrcUlZZlL6uJLZKQCXQgj1BB3OqX0584OCvqFHrkAusA==",
+      "path": "libsassbuilder/2.0.1",
+      "hashPath": "libsassbuilder.2.0.1.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.Authorization/6.0.9": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-paH0Zgo6yWMhVwaWZ0wqyY5az7zv89C5AlRfrpAAjAyKLvgBuTIQIK9kPSIGAoOhvt56fxcDTLws3cckauWOWw==",
+      "path": "microsoft.aspnetcore.authorization/6.0.9",
+      "hashPath": "microsoft.aspnetcore.authorization.6.0.9.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.Components/6.0.9": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ueQkgDVg30fWLRrHiK/yaDEH2J8UUZ8+5KykWTupiHoLxHBcdx60lxelmJWrLzHsiA/1aoZMhPF2r5sGDPd8nw==",
+      "path": "microsoft.aspnetcore.components/6.0.9",
+      "hashPath": "microsoft.aspnetcore.components.6.0.9.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.Components.Analyzers/6.0.9": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-yVI41+FbLzNhBUEPWNTEwFCz3+JkzCfiD1K+8MLFa66+yDSDWBUbzXtTxzVb2I8RstANXalR/6BFUvmdYjruAQ==",
+      "path": "microsoft.aspnetcore.components.analyzers/6.0.9",
+      "hashPath": "microsoft.aspnetcore.components.analyzers.6.0.9.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.Components.Forms/6.0.9": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-uPFeDc3Ur8lReE6J5k+8Y+8xIhXiUHKBB3w2IV37bBh2vOSTpoMq9RkcKC8omeulqGRD4iPyzGxEA7OIIXqC0A==",
+      "path": "microsoft.aspnetcore.components.forms/6.0.9",
+      "hashPath": "microsoft.aspnetcore.components.forms.6.0.9.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.Components.Web/6.0.9": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-fNb8IGYDYYaWrt20ObNhwXkh5AhYyiphrIZDpNegvbtLtlJMsz2OaJztgpVDGNLmb7x20TQ3GlnGQiqHChcmeA==",
+      "path": "microsoft.aspnetcore.components.web/6.0.9",
+      "hashPath": "microsoft.aspnetcore.components.web.6.0.9.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.Metadata/6.0.9": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-cQET2vOT72zW+kOd71KQE80qBSQJEnWs86HfJEZPzHgTfn/o5UyzHHRosP1EQX8iPQ9ESxmd+AJedggkSxN93Q==",
+      "path": "microsoft.aspnetcore.metadata/6.0.9",
+      "hashPath": "microsoft.aspnetcore.metadata.6.0.9.nupkg.sha512"
+    },
+    "Microsoft.CSharp/4.7.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-pTj+D3uJWyN3My70i2Hqo+OXixq3Os2D1nJ2x92FFo6sk8fYS1m1WLNTs0Dc1uPaViH0YvEEwvzddQ7y4rhXmA==",
+      "path": "microsoft.csharp/4.7.0",
+      "hashPath": "microsoft.csharp.4.7.0.nupkg.sha512"
+    },
+    "Microsoft.Extensions.DependencyInjection/6.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-k6PWQMuoBDGGHOQTtyois2u4AwyVcIwL2LaSLlTZQm2CYcJ1pxbt6jfAnpWmzENA/wfrYRI/X9DTLoUkE4AsLw==",
+      "path": "microsoft.extensions.dependencyinjection/6.0.0",
+      "hashPath": "microsoft.extensions.dependencyinjection.6.0.0.nupkg.sha512"
+    },
+    "Microsoft.Extensions.DependencyInjection.Abstractions/6.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-xlzi2IYREJH3/m6+lUrQlujzX8wDitm4QGnUu6kUXTQAWPuZY8i+ticFJbzfqaetLA6KR/rO6Ew/HuYD+bxifg==",
+      "path": "microsoft.extensions.dependencyinjection.abstractions/6.0.0",
+      "hashPath": "microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512"
+    },
+    "Microsoft.Extensions.Logging.Abstractions/6.0.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-SUpStcdjeBbdKjPKe53hVVLkFjylX0yIXY8K+xWa47+o1d+REDyOMZjHZa+chsQI1K9qZeiHWk9jos0TFU7vGg==",
+      "path": "microsoft.extensions.logging.abstractions/6.0.3",
+      "hashPath": "microsoft.extensions.logging.abstractions.6.0.3.nupkg.sha512"
+    },
+    "Microsoft.Extensions.Options/6.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-dzXN0+V1AyjOe2xcJ86Qbo233KHuLEY0njf/P2Kw8SfJU+d45HNS2ctJdnEnrWbM9Ye2eFgaC5Mj9otRMU6IsQ==",
+      "path": "microsoft.extensions.options/6.0.0",
+      "hashPath": "microsoft.extensions.options.6.0.0.nupkg.sha512"
+    },
+    "Microsoft.Extensions.Primitives/6.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-9+PnzmQFfEFNR9J2aDTfJGGupShHjOuGw4VUv+JB044biSHrnmCIMD+mJHmb2H7YryrfBEXDurxQ47gJZdCKNQ==",
+      "path": "microsoft.extensions.primitives/6.0.0",
+      "hashPath": "microsoft.extensions.primitives.6.0.0.nupkg.sha512"
+    },
+    "Microsoft.JSInterop/6.0.9": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-6SRDR3QEhnT3WuNittrXn0yKM2a2J7E22GAdSuKzC8tPcAjA25tHJeyFcRIJFZBmsIE0tuJzXopLrvG4sTacAg==",
+      "path": "microsoft.jsinterop/6.0.9",
+      "hashPath": "microsoft.jsinterop.6.0.9.nupkg.sha512"
+    },
+    "Radzen.Blazor/4.6.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-XIqTukfiJ0nt/DPpJa5bdA04upENLe3cBHmTq9ieqQlmklo9Do8ToyMa1l02ZD1Qmcns9w6SCX4SKycIkPDJVA==",
+      "path": "radzen.blazor/4.6.3",
+      "hashPath": "radzen.blazor.4.6.3.nupkg.sha512"
+    },
+    "System.IO.Pipelines/6.0.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ryTgF+iFkpGZY1vRQhfCzX0xTdlV3pyaTTqRu2ETbEv+HlV7O6y7hyQURnghNIXvctl5DuZ//Dpks6HdL/Txgw==",
+      "path": "system.io.pipelines/6.0.3",
+      "hashPath": "system.io.pipelines.6.0.3.nupkg.sha512"
+    },
+    "System.Linq.Dynamic.Core/1.2.22": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-PB57h0KkIvCF1X/x7iZZKdgiQSo/5geNrConfaw4KEsbyX25MuAEcLOc5RF5GNycSfC7qwaL4L8Mm6b8uMmcAw==",
+      "path": "system.linq.dynamic.core/1.2.22",
+      "hashPath": "system.linq.dynamic.core.1.2.22.nupkg.sha512"
+    },
+    "System.Runtime.CompilerServices.Unsafe/6.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-/iUeP3tq1S0XdNNoMz5C9twLSrM/TH+qElHkXWaPvuNOt+99G75NrV0OS2EqHx5wMN7popYjpc8oTjC1y16DLg==",
+      "path": "system.runtime.compilerservices.unsafe/6.0.0",
+      "hashPath": "system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
+    },
+    "AlliancesPlugin/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Torch/1.3.1.149": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Torch.API/1.3.1.149": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "NLog/4.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "VRage.Game/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "VRage.Math/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Sandbox.Game/0.1.1.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "VRage.Library/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "SpaceEngineers.Game/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Sandbox.Common/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "0Harmony/2.0.4.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "SpaceEngineers.ObjectBuilders/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "VRage/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "ProtoBuf.Net.Core/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "LiteDB/5.0.10.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "VRage.Render/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "protobuf-net/2.4.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Steamworks.NET/15.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "SteamKit2/2.1.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "VRage.Platform.Windows/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "VRage.Dedicated/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "VRage.Render11/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Sandbox.Graphics/0.1.1.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "HavokWrapper/0.1.1.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "VRage.NativeWrapper/0.1.1.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "VRage.Network/1.0.53.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "VRage.Input/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "VRage.UserInterface/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "EmptyKeys.UserInterface/3.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "EmptyKeys.UserInterface.Core/3.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Sandbox.RenderDirect/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "RecastDetourWrapper/0.1.1.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "SixLabors.ImageSharp/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "SixLabors.Core/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "SharpDX/4.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "SharpDX.DirectInput/4.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "VRage.NativeAftermath/0.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "ProtoBuf.Net/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "SharpDX.DXGI/4.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "SharpDX.Direct3D11/4.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "SharpDX.XInput/4.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "RestSharp/106.6.10.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "SharpDX.Desktop/4.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "DirectShowLib/2.1.0.1599": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "VRage.Audio/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "SharpDX.XAudio2/4.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "GameAnalytics.Mono/1.0.7702.25490": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "VRage.Scripting/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "VRage.Ansel/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "VRage.RemoteClient.Core/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "SharpDX.D3DCompiler/4.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "System.Data.SQLite/1.0.102.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Microsoft.CodeAnalysis.CSharp/2.9.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Microsoft.CodeAnalysis/2.9.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
