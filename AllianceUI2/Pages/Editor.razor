@@ -3,6 +3,7 @@
 @using Data;
 @page "/alliances/edit/{Id:guid}"
 @inject IJSRuntime JsRuntime
+@inject TooltipService tooltipService
 
 <PageTitle>Alliance Editor</PageTitle>
 <div class="container-fluid">
@@ -40,7 +41,8 @@
     </div>
     <div class="row px-3">
         <div class="col-md-6 col-lg-12 p-3">
-            <RadzenButton Click=@(args => NewRank()) Text="Create Rank" ButtonStyle="ButtonStyle.Primary" Size="ButtonSize.Small" />
+            <RadzenButton Click=@(args => NewRank()) Icon="add" ButtonStyle="ButtonStyle.Success" Size="ButtonSize.Small" Text="Add"/>
+            <RadzenButton Click=@(args => Undo()) Icon="undo" ButtonStyle="ButtonStyle.Primary" Size="ButtonSize.Small" Text="Undo Delete"/>
 
             <DataGrid TItem="AlliancesPlugin.Alliances.RankPermissions"
                       Data="@alliance.CustomRankPermissions.Select(x => new RankPermissions(){
@@ -93,9 +95,11 @@ permissionLevel = x.Value.permissionLevel
         </div>
     </div>
 </div>
-<RadzenButton Click=@(args => Clicked()) Text="Save" ButtonStyle="ButtonStyle.Success" Size="ButtonSize.Small"/>
+<RadzenButton Click=@(args => Clicked()) Text="Save" ButtonStyle="ButtonStyle.Success" Size="ButtonSize.Small" />
 @code {
     List<AlliancesPlugin.Alliances.AccessLevel> Permissions = new List<AlliancesPlugin.Alliances.AccessLevel>();
+
+    public Stack<RankPermissions> Deletes = new Stack<RankPermissions>();
 
     public async Task NewRank()
     {
@@ -111,11 +115,28 @@ permissionLevel = x.Value.permissionLevel
         await InvokeAsync(StateHasChanged);
     }
 
+    public void Undo()
+    {
+        if (Deletes.TryPop(out RankPermissions rank))
+        {
+            if (alliance.CustomRankPermissions.ContainsKey(rank.Key))
+            {
+                alliance.CustomRankPermissions[rank.Key] = rank;
+            }
+            else
+            {
+                alliance.CustomRankPermissions.Add(rank.Key, rank);
+            }
+            GridRef.ClearFilter();
+        }
+    }
+
     public async Task Delete(AlliancesPlugin.Alliances.RankPermissions rank)
     {
         var confirmDelete = await JsRuntime.InvokeAsync<bool>("confirm", "Do you want to delete it?");
         if (confirmDelete)
         {
+            Deletes.Push(rank);
             alliance.CustomRankPermissions.Remove(rank.Key);
             await GridRef.ClearFilter();
         }
