@@ -43,6 +43,7 @@
             <DataGrid TItem="AlliancesPlugin.Alliances.RankPermissions"
                       Data="@alliance.CustomRankPermissions.Values.OrderByDescending(x => x.permissionLevel)"
                       EditMode="Blazorise.DataGrid.DataGridEditMode.Popup"
+                      SelectionMode="Blazorise.DataGrid.DataGridSelectionMode.Single"
                       ShowPager="false"
                       ShowPageSizes="false"
                       Editable="true"
@@ -50,19 +51,16 @@
                       Sortable="true"
                       Striped="true"
                       PageSize="50"
-                     
-                      Filterable="true" PopupSize="Blazorise.ModalSize.ExtraLarge" @ref="GridRef" RowRemoved="@Delete">
+                     CommandMode="DataGridCommandMode.Commands"
+                      Filterable="true" PopupSize="Blazorise.ModalSize.ExtraLarge" @ref="GridRef">
                 <ChildContent>
                     <DataGridCommandColumn TItem="AlliancesPlugin.Alliances.RankPermissions" DeleteCommandAllowed="true">
-
                     </DataGridCommandColumn>
                     <DataGridColumn TItem="AlliancesPlugin.Alliances.RankPermissions" Field="RankName" Caption="Rank Name" Editable="true" />
-                    <DataGridColumn TItem="AlliancesPlugin.Alliances.RankPermissions" Field="taxRate" Caption="Tax Rate" Editable="true" />
+                    <DataGridColumn TItem="AlliancesPlugin.Alliances.RankPermissions" Field="taxRate" Caption="Tax Rate %" Editable="true" />
                     <DataGridColumn TItem="AlliancesPlugin.Alliances.RankPermissions" Field="permissionLevel" Caption="Permission Level" Editable="true" />
                     <DataGridColumn TItem="AlliancesPlugin.Alliances.RankPermissions" Field="permissions" Caption="Permissions" Editable="true" Displayable="false" Width="200%" PopupFieldColumnSize="@(Blazorise.ColumnSize.IsFull as Blazorise.IFluentColumn)">
-
                         <EditTemplate>
-
                             <div class="row px-3">
                                 @foreach (var item in Permissions)
                                 {
@@ -75,7 +73,6 @@
                                 }
                             </div>
                         </EditTemplate>
-
                     </DataGridColumn>
                 </ChildContent>
             </DataGrid>
@@ -86,8 +83,6 @@
 <RadzenButton Click=@(args => Clicked()) Text="Save" ButtonStyle="ButtonStyle.Success" />
 @code {
     List<AlliancesPlugin.Alliances.AccessLevel> Permissions = new List<AlliancesPlugin.Alliances.AccessLevel>();
-
-    //  public IFluentColumn column;
 
     public async Task NewRank()
     {
