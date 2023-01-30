@@ -1,6 +1,8 @@
 ﻿@using AlliancesPlugin;
+@using AlliancesPlugin.Alliances;
 @using Data;
 @page "/alliances/edit/{Id:guid}"
+@inject IJSRuntime JsRuntime
 
 <PageTitle>Alliance Editor</PageTitle>
 <div class="container-fluid">
@@ -38,10 +40,15 @@
     </div>
     <div class="row px-3">
         <div class="col-md-6 col-lg-12 p-3">
-            <RadzenButton Click=@(args => NewRank()) Text="Create Rank" ButtonStyle="ButtonStyle.Primary" />
+            <RadzenButton Click=@(args => NewRank()) Text="Create Rank" ButtonStyle="ButtonStyle.Primary" Size="ButtonSize.Small" />
 
             <DataGrid TItem="AlliancesPlugin.Alliances.RankPermissions"
-                      Data="@alliance.CustomRankPermissions.Values.OrderByDescending(x => x.permissionLevel)"
+                      Data="@alliance.CustomRankPermissions.Select(x => new RankPermissions(){
+Key = x.Key,
+RankName = x.Key,
+permissions = x.Value.permissions,
+permissionLevel = x.Value.permissionLevel
+}).OrderByDescending(x => x.permissionLevel)"
                       EditMode="Blazorise.DataGrid.DataGridEditMode.Popup"
                       SelectionMode="Blazorise.DataGrid.DataGridSelectionMode.Single"
                       ShowPager="false"
@@ -51,10 +58,16 @@
                       Sortable="true"
                       Striped="true"
                       PageSize="50"
-                     CommandMode="DataGridCommandMode.Commands"
+                      CommandMode="DataGridCommandMode.Commands"
                       Filterable="true" PopupSize="Blazorise.ModalSize.ExtraLarge" @ref="GridRef">
                 <ChildContent>
                     <DataGridCommandColumn TItem="AlliancesPlugin.Alliances.RankPermissions" DeleteCommandAllowed="true">
+                        <EditCommandTemplate>
+                            <RadzenButton ButtonStyle="ButtonStyle.Info" Icon="edit" Click="@(args => context.Clicked.InvokeAsync())"></RadzenButton>
+                        </EditCommandTemplate>
+                        <DeleteCommandTemplate>
+                            <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="delete" Click="@(args => Delete(@context.Item))"></RadzenButton>
+                        </DeleteCommandTemplate>
                     </DataGridCommandColumn>
                     <DataGridColumn TItem="AlliancesPlugin.Alliances.RankPermissions" Field="RankName" Caption="Rank Name" Editable="true" />
                     <DataGridColumn TItem="AlliancesPlugin.Alliances.RankPermissions" Field="taxRate" Caption="Tax Rate %" Editable="true" />
@@ -80,7 +93,7 @@
         </div>
     </div>
 </div>
-<RadzenButton Click=@(args => Clicked()) Text="Save" ButtonStyle="ButtonStyle.Success" />
+<RadzenButton Click=@(args => Clicked()) Text="Save" ButtonStyle="ButtonStyle.Success" Size="ButtonSize.Small"/>
 @code {
     List<AlliancesPlugin.Alliances.AccessLevel> Permissions = new List<AlliancesPlugin.Alliances.AccessLevel>();
 
@@ -98,12 +111,16 @@
         await InvokeAsync(StateHasChanged);
     }
 
-    public async Task Delete(AlliancesPlugin.Alliances.RankPermissions rank){
-        alliance.CustomRankPermissions.Remove(rank.Key);
-        GridRef.ClearFilter();
-
+    public async Task Delete(AlliancesPlugin.Alliances.RankPermissions rank)
+    {
+        var confirmDelete = await JsRuntime.InvokeAsync<bool>("confirm", "Do you want to delete it?");
+        if (confirmDelete)
+        {
+            alliance.CustomRankPermissions.Remove(rank.Key);
+            await GridRef.ClearFilter();
+        }
     }
- 
+
     public DataGrid<AlliancesPlugin.Alliances.RankPermissions> GridRef { get; set; }
 
     public int NewCount = 1;
