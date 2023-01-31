@@ -6,12 +6,15 @@ using Blazorise;
 using Blazorise.Bootstrap;
 using Blazorise.Icons.FontAwesome;
 using Radzen;
+using System.Web.Http;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddControllers();
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
+builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSingleton<DataService>();
 builder.Services.AddTransient<TooltipService>();
 builder.Services
@@ -39,5 +42,5 @@ app.UseRouting();
 
 app.MapBlazorHub();
 app.MapFallbackToPage("/_Host");
-
+app.MapControllers();
 app.Run();

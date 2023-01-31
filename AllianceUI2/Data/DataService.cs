@@ -5,51 +5,20 @@ namespace AllianceUI2.Data
 {
     public class DataService
     {
-        public Alliance GetData(Guid id)
+        private Dictionary<Guid, AlliancePackage> Data = new Dictionary<Guid, AlliancePackage>();
+        public AlliancePackage GetPackage(Guid id)
         {
-            return new Alliance()
+            if (Data.TryGetValue(id, out var package))
             {
-                name = "This is test data",
-                CustomRankPermissions = new Dictionary<string, RankPermissions>()
-                {
-                    {
-                       "test",
-                       new RankPermissions()
-                        {
-                            RankName = "test",
-                            taxRate = 5,
-                            permissionLevel = 100
-                        }
-                    }
-                    ,
-                    {  "test2",
-                      new RankPermissions()
-                        {
-                            RankName = "test2",
-                            taxRate = 3,
-                            permissionLevel = 101
-                        }
-                    }
-                    ,
-                    {  "test3",
-                      new RankPermissions()
-                        {
-                            RankName = "Alan",
-                            taxRate = 100,
-                            permissionLevel = 99
-                        }
-                    }
-                    ,
-                    {  "test4",
-                      new RankPermissions()
-                        {
-                            RankName = "Dave",
-                            taxRate = 1,
-                            permissionLevel = 45
-                        }
-                    }
-                }
-            };
+                return package;
+            }
+            return null;
+
+        }
+    
+        public void StoreData(AlliancePackage package)
+        {
+            Data.Add(package.EditId, package);
         }
     }
 }

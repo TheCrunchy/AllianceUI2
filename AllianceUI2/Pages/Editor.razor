@@ -171,8 +171,8 @@ permissionLevel = x.Value.permissionLevel
 
     protected override async Task OnInitializedAsync()
     {
-        var temp = dataService.GetData(Id);
-        alliance = temp;
+        var temp = dataService.GetPackage(Id);
+        alliance = temp.AllianceData;
         Permissions.Clear();
         var perms = Enum.GetValues(typeof(AlliancesPlugin.Alliances.AccessLevel));
         foreach (AlliancesPlugin.Alliances.AccessLevel perm in perms)
