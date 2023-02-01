@@ -1,5 +1,6 @@
 ﻿@using AlliancesPlugin;
 @using AlliancesPlugin.Alliances;
+@using Blazorise
 @using Data;
 @page "/alliances/edit/{Id:guid}"
 @inject IJSRuntime JsRuntime
@@ -41,8 +42,8 @@
     </div>
     <div class="row px-3">
         <div class="col-md-6 col-lg-12 p-3">
-            <RadzenButton Click=@(args => NewRank()) Icon="add" ButtonStyle="ButtonStyle.Success" Size="ButtonSize.Small" Text="Add"/>
-            <RadzenButton Click=@(args => Undo()) Icon="undo" ButtonStyle="ButtonStyle.Primary" Size="ButtonSize.Small" Text="Undo Delete"/>
+            <RadzenButton Click=@(args => NewRank()) Icon="add" ButtonStyle="ButtonStyle.Success" Size="ButtonSize.Small" Text="Add" />
+            <RadzenButton Click=@(args => Undo()) Icon="undo" ButtonStyle="ButtonStyle.Primary" Size="ButtonSize.Small" Text="Undo Delete" />
 
             <DataGrid TItem="AlliancesPlugin.Alliances.RankPermissions"
                       Data="@alliance.CustomRankPermissions.Select(x => new RankPermissions(){
@@ -61,9 +62,16 @@ permissionLevel = x.Value.permissionLevel
                       Striped="true"
                       PageSize="50"
                       CommandMode="DataGridCommandMode.Commands"
+                      SubmitFormOnEnter="false"
                       Filterable="true" PopupSize="Blazorise.ModalSize.ExtraLarge" @ref="GridRef">
                 <ChildContent>
                     <DataGridCommandColumn TItem="AlliancesPlugin.Alliances.RankPermissions" DeleteCommandAllowed="true">
+                        <SaveCommandTemplate>
+                            <RadzenButton ButtonStyle="ButtonStyle.Info" Icon="save" Click="@(args => { Updated(@context.Item); context.Clicked.InvokeAsync(); } )"></RadzenButton>
+                        </SaveCommandTemplate>
+                        <CancelCommandTemplate>
+                            <RadzenButton ButtonStyle="ButtonStyle.Info" Icon="cancel" Click="@(args => context.Clicked.InvokeAsync())"></RadzenButton>
+                        </CancelCommandTemplate>
                         <EditCommandTemplate>
                             <RadzenButton ButtonStyle="ButtonStyle.Info" Icon="edit" Click="@(args => context.Clicked.InvokeAsync())"></RadzenButton>
                         </EditCommandTemplate>
@@ -71,8 +79,28 @@ permissionLevel = x.Value.permissionLevel
                             <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="delete" Click="@(args => Delete(@context.Item))"></RadzenButton>
                         </DeleteCommandTemplate>
                     </DataGridCommandColumn>
-                    <DataGridColumn TItem="AlliancesPlugin.Alliances.RankPermissions" Field="RankName" Caption="Rank Name" Editable="true" />
-                    <DataGridColumn TItem="AlliancesPlugin.Alliances.RankPermissions" Field="taxRate" Caption="Tax Rate %" Editable="true" />
+                    <DataGridColumn TItem="AlliancesPlugin.Alliances.RankPermissions" Field="RankName" Caption="Rank Name" Editable="true">
+                        <EditTemplate>
+                            <TextEdit Text="@((string)context.CellValue)" TextChanged="@(v => { context.CellValue = v ; context.Item.RankName = v;} )" ReadOnly="@(@context.Item.Key == "Unranked")" Pattern="[0-9a-zA-Z ]{3,25}$">
+                                <Feedback>
+                                    <ValidationError>Pattern does not match!</ValidationError>
+                                </Feedback>
+                            </TextEdit>
+                        </EditTemplate>
+                    </DataGridColumn>
+                    <DataGridColumn TItem="AlliancesPlugin.Alliances.RankPermissions" Field="taxRate" Caption="Tax Rate %" Editable="true">
+                        <DisplayTemplate>
+                              <p>@(@context.taxRate * 100)</p>
+                        </DisplayTemplate>
+                        <EditTemplate>
+                            <NumericEdit TValue="float" Value="@((float)context.Item.taxRate * 100)" ValueChanged="@( v => { context.CellValue = v; context.Item.taxRate = v / 100; } )" Max="50" Min="0">
+                                <Feedback>
+                                    <ValidationError>"Maximum is 50"</ValidationError>
+                                </Feedback>
+                            </NumericEdit>
+                        
+                        </EditTemplate>
+                    </DataGridColumn>
                     <DataGridColumn TItem="AlliancesPlugin.Alliances.RankPermissions" Field="permissionLevel" Caption="Permission Level" Editable="true" />
                     <DataGridColumn TItem="AlliancesPlugin.Alliances.RankPermissions" Field="permissions" Caption="Permissions" Editable="true" Displayable="false" Width="200%" PopupFieldColumnSize="@(Blazorise.ColumnSize.IsFull as Blazorise.IFluentColumn)">
                         <EditTemplate>
@@ -99,11 +127,32 @@ permissionLevel = x.Value.permissionLevel
 @code {
     List<AlliancesPlugin.Alliances.AccessLevel> Permissions = new List<AlliancesPlugin.Alliances.AccessLevel>();
 
+    public void Updated(RankPermissions rank)
+    {
+        if (rank.Key == "Unranked")
+        {
+            rank.RankName = "Unranked";
+        }
+        if (alliance.CustomRankPermissions.ContainsKey(rank.Key) && rank.Key != rank.RankName)
+        {
+            alliance.CustomRankPermissions.Remove(rank.Key);
+            rank.Key = rank.RankName;
+            alliance.CustomRankPermissions.Add(rank.RankName, rank);
+        }
+        else
+        {
+            alliance.CustomRankPermissions[rank.Key] = rank;
+        }
+        GridRef.Refresh();
+        GridRef.ClearFilter();
+        return;
+    }
+
     public Stack<RankPermissions> Deletes = new Stack<RankPermissions>();
 
     public async Task NewRank()
     {
-        var newRank = new AlliancesPlugin.Alliances.RankPermissions()
+        var newRank = new RankPermissions()
             {
                 RankName = $"new{NewCount}",
                 permissions = new List<AlliancesPlugin.Alliances.AccessLevel>(),
@@ -133,6 +182,11 @@ permissionLevel = x.Value.permissionLevel
 
     public async Task Delete(AlliancesPlugin.Alliances.RankPermissions rank)
     {
+        if (rank.Key == "Unranked")
+        {
+            await JsRuntime.InvokeAsync<bool>("Error", "You cannot delete the unranked.");
+            return;
+        }
         var confirmDelete = await JsRuntime.InvokeAsync<bool>("confirm", "Do you want to delete it?");
         if (confirmDelete)
         {
@@ -185,6 +239,7 @@ permissionLevel = x.Value.permissionLevel
 
     public async Task Clicked()
     {
+        alliance.UnrankedPerms = alliance.CustomRankPermissions.FirstOrDefault(x => x.Key == "Unranked").Value;
         return;
     }
 

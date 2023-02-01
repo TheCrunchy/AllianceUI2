@@ -18,7 +18,10 @@ namespace AllianceUI2.Data
     
         public void StoreData(AlliancePackage package)
         {
-            Data.Add(package.EditId, package);
+            if (!Data.ContainsKey(package.EditId))
+            {
+                Data.Add(package.EditId, package);
+            }
         }
     }
 }

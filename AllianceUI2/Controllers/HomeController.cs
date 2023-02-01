@@ -20,6 +20,7 @@ namespace AllianceUI2.Controllers
         public IActionResult PostAlliance(string allianceJson)
         {
             AlliancePackage alliance = JsonConvert.DeserializeObject<AlliancePackage>(allianceJson);
+            alliance.AllianceData.CustomRankPermissions.Add("Unranked", alliance.AllianceData.UnrankedPerms);
             dataService.StoreData(alliance);
             return Ok(alliance);
         }
