@@ -21,6 +21,13 @@ namespace AllianceUI2.Controllers
         {
             AlliancePackage alliance = JsonConvert.DeserializeObject<AlliancePackage>(allianceJson);
             alliance.AllianceData.CustomRankPermissions.Add("Unranked", alliance.AllianceData.UnrankedPerms);
+            foreach (var rank in alliance.AllianceData.CustomRankPermissions)
+            {
+                while (rank.Value.taxRate < 1 && rank.Value.taxRate != 0)
+                {
+                    rank.Value.taxRate *= 100;
+                }
+            }
             dataService.StoreData(alliance);
             return Ok(alliance);
         }
@@ -33,7 +40,13 @@ namespace AllianceUI2.Controllers
             {
                 return NotFound();
             }
-
+            foreach (var rank in alliance.AllianceData.CustomRankPermissions)
+            {
+                while (rank.Value.taxRate > 1)
+                {
+                    rank.Value.taxRate /= 100;
+                }
+            }
             string allianceJson = JsonConvert.SerializeObject(alliance);
             return Ok(allianceJson);
         }

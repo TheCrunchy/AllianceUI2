@@ -50,7 +50,8 @@
 Key = x.Key,
 RankName = x.Key,
 permissions = x.Value.permissions,
-permissionLevel = x.Value.permissionLevel
+permissionLevel = x.Value.permissionLevel,
+taxRate = x.Value.taxRate
 }).OrderByDescending(x => x.permissionLevel)"
                       EditMode="Blazorise.DataGrid.DataGridEditMode.Popup"
                       SelectionMode="Blazorise.DataGrid.DataGridSelectionMode.Single"
@@ -88,17 +89,14 @@ permissionLevel = x.Value.permissionLevel
                             </TextEdit>
                         </EditTemplate>
                     </DataGridColumn>
-                    <DataGridColumn TItem="AlliancesPlugin.Alliances.RankPermissions" Field="taxRate" Caption="Tax Rate %" Editable="true">
+                    <DataGridColumn TItem="AlliancesPlugin.Alliances.RankPermissions" Field="taxRate" Caption="Tax Rate %"  Editable="true">
                         <DisplayTemplate>
-                              <p>@(@context.taxRate * 100)</p>
+                            <p>@(@context.taxRate)%</p>
                         </DisplayTemplate>
                         <EditTemplate>
-                            <NumericEdit TValue="float" Value="@((float)context.Item.taxRate * 100)" ValueChanged="@( v => { context.CellValue = v; context.Item.taxRate = v / 100; } )" Max="50" Min="0">
-                                <Feedback>
-                                    <ValidationError>"Maximum is 50"</ValidationError>
-                                </Feedback>
-                            </NumericEdit>
-                        
+                            <NumericPicker TValue="float" Value="@((float)context.CellValue)" ValueChanged="@( v => { context.CellValue = v; } )" Max="50" Min="0">
+                            </NumericPicker>
+
                         </EditTemplate>
                     </DataGridColumn>
                     <DataGridColumn TItem="AlliancesPlugin.Alliances.RankPermissions" Field="permissionLevel" Caption="Permission Level" Editable="true" />
@@ -127,11 +125,14 @@ permissionLevel = x.Value.permissionLevel
 @code {
     List<AlliancesPlugin.Alliances.AccessLevel> Permissions = new List<AlliancesPlugin.Alliances.AccessLevel>();
 
-    public void Updated(RankPermissions rank)
+    public async Task Updated(RankPermissions rank)
     {
         if (rank.Key == "Unranked")
         {
             rank.RankName = "Unranked";
+        }
+        while (rank.taxRate > 1){
+            rank.taxRate /= 100;
         }
         if (alliance.CustomRankPermissions.ContainsKey(rank.Key) && rank.Key != rank.RankName)
         {
@@ -141,10 +142,11 @@ permissionLevel = x.Value.permissionLevel
         }
         else
         {
-            alliance.CustomRankPermissions[rank.Key] = rank;
+            alliance.CustomRankPermissions.Remove(rank.Key);
+            rank.Key = rank.RankName;
+            alliance.CustomRankPermissions.Add(rank.RankName, rank);
         }
-        GridRef.Refresh();
-        GridRef.ClearFilter();
+        await GridRef.Reload();
         return;
     }
 
@@ -156,7 +158,9 @@ permissionLevel = x.Value.permissionLevel
             {
                 RankName = $"new{NewCount}",
                 permissions = new List<AlliancesPlugin.Alliances.AccessLevel>(),
-                Key = $"new{NewCount}"
+                Key = $"new{NewCount}",
+                taxRate = 0f,
+                permissionLevel = 100
             };
         alliance.CustomRankPermissions.Add($"new{NewCount}", newRank);
         NewCount++;
