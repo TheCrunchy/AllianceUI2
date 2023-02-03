@@ -8,27 +8,29 @@
 
 <PageTitle>Alliance Editor</PageTitle>
 <div class="container-fluid">
-    @*    <RadzenCard>
-    <RadzenText TextStyle="TextStyle.H4" TagName="TagName.H4" TextAlign="TextAlign.Center">Edit Id</RadzenText>
-    <RadzenText TextStyle="TextStyle.H5" TagName="TagName.H5" TextAlign="TextAlign.Center" contenteditable="false">@Id</RadzenText>
-    </RadzenCard>*@
+       <RadzenCard>
+        <RadzenText TextStyle="TextStyle.H4" TagName="TagName.H4" TextAlign="TextAlign.Center">Run this command ingame to confirm changes</RadzenText>
+        <RadzenText TextStyle="TextStyle.H5" TagName="TagName.H5" TextAlign="TextAlign.Center" contenteditable="false">!alliance acceptChanges @Id</RadzenText>
+    </RadzenCard>
     <div class="row px-3">
         <div class="col-md-6 col-lg-4 p-3">
             <RadzenCard>
                 <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H4">Alliance Name</RadzenText>
-                <RadzenTextBox @bind-Value="@alliance.name" Class="w-100" />
+                <TextEdit @bind-Text="@alliance.name" MaskType="MaskType.RegEx" EditMask="[0-9a-zA-Z ]{3,25}$" Class="w-100" />
             </RadzenCard>
         </div>
         <div class="col-md-6 col-lg-4 p-3">
             <RadzenCard>
                 <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H4">Leader Title</RadzenText>
-                <RadzenTextBox @bind-Value="@alliance.LeaderTitle" Class="w-100" />
+                                <TextEdit @bind-Text="@alliance.LeaderTitle" MaskType="MaskType.RegEx" EditMask="[0-9a-zA-Z ]{3,25}$" Class="w-100" />
+              @*  <RadzenTextBox @bind-Value="@alliance.LeaderTitle" Class="w-100" />*@
             </RadzenCard>
         </div>
         <div class="col-md-6 col-lg-4 p-3">
             <RadzenCard>
                 <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H4">Leader Tax Rate</RadzenText>
-                <RadzenNumeric @bind-Value="@alliance.leadertax" Class="w-100" />
+                     <NumericPicker @bind-Value="@alliance.leadertax" Max="50" Min="0" Class="w-100"/>
+             @*   <RadzenNumeric @bind-Value="@alliance.leadertax" Class="w-100" />*@
             </RadzenCard>
         </div>
     </div>
@@ -82,21 +84,16 @@ taxRate = x.Value.taxRate
                     </DataGridCommandColumn>
                     <DataGridColumn TItem="AlliancesPlugin.Alliances.RankPermissions" Field="RankName" Caption="Rank Name" Editable="true">
                         <EditTemplate>
-                            <TextEdit Text="@((string)context.CellValue)" TextChanged="@(v => { context.CellValue = v ; context.Item.RankName = v;} )" ReadOnly="@(@context.Item.Key == "Unranked")" Pattern="[0-9a-zA-Z ]{3,25}$">
-                                <Feedback>
-                                    <ValidationError>Pattern does not match!</ValidationError>
-                                </Feedback>
-                            </TextEdit>
+                            <TextEdit Text="@((string)context.CellValue)" TextChanged="@(v => { context.CellValue = v ; context.Item.RankName = v;} )" MaskType="MaskType.RegEx" EditMask="[0-9a-zA-Z ]{3,25}$" ReadOnly="@(@context.Item.Key == " Unranked")" />
                         </EditTemplate>
                     </DataGridColumn>
-                    <DataGridColumn TItem="AlliancesPlugin.Alliances.RankPermissions" Field="taxRate" Caption="Tax Rate %"  Editable="true">
+                    <DataGridColumn TItem="AlliancesPlugin.Alliances.RankPermissions" Field="taxRate" Caption="Tax Rate %" Editable="true">
                         <DisplayTemplate>
                             <p>@(@context.taxRate)%</p>
                         </DisplayTemplate>
                         <EditTemplate>
                             <NumericPicker TValue="float" Value="@((float)context.CellValue)" ValueChanged="@( v => { context.CellValue = v; } )" Max="50" Min="0">
                             </NumericPicker>
-
                         </EditTemplate>
                     </DataGridColumn>
                     <DataGridColumn TItem="AlliancesPlugin.Alliances.RankPermissions" Field="permissionLevel" Caption="Permission Level" Editable="true" />
@@ -125,13 +122,18 @@ taxRate = x.Value.taxRate
 @code {
     List<AlliancesPlugin.Alliances.AccessLevel> Permissions = new List<AlliancesPlugin.Alliances.AccessLevel>();
 
+    public async Task Clicked(){
+        dataService.SaveChanges(Id, alliance);
+    }
+
     public async Task Updated(RankPermissions rank)
     {
         if (rank.Key == "Unranked")
         {
             rank.RankName = "Unranked";
         }
-        while (rank.taxRate > 1){
+        while (rank.taxRate > 1)
+        {
             rank.taxRate /= 100;
         }
         if (alliance.CustomRankPermissions.ContainsKey(rank.Key) && rank.Key != rank.RankName)
@@ -240,11 +242,4 @@ taxRate = x.Value.taxRate
 
         return;
     }
-
-    public async Task Clicked()
-    {
-        alliance.UnrankedPerms = alliance.CustomRankPermissions.FirstOrDefault(x => x.Key == "Unranked").Value;
-        return;
-    }
-
 }

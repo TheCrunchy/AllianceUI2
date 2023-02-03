@@ -28,6 +28,10 @@ namespace AllianceUI2.Controllers
                     rank.Value.taxRate *= 100;
                 }
             }
+            while (alliance.AllianceData.leadertax < 1 && alliance.AllianceData.leadertax != 0)
+            {
+                alliance.AllianceData.leadertax *= 100;
+            }
             dataService.StoreData(alliance);
             return Ok(alliance);
         }
@@ -46,6 +50,10 @@ namespace AllianceUI2.Controllers
                 {
                     rank.Value.taxRate /= 100;
                 }
+            }
+            while (alliance.AllianceData.leadertax > 1)
+            {
+                alliance.AllianceData.leadertax /= 100;
             }
             string allianceJson = JsonConvert.SerializeObject(alliance);
             return Ok(allianceJson);

@@ -23,6 +23,13 @@ namespace AllianceUI2.Data
                 Data.Add(package.EditId, package);
             }
         }
+
+        public void SaveChanges(Guid id, Alliance alliance)
+        {
+            var data = Data[id];
+            data.AllianceData = alliance;
+            Data[id] = data;
+        }
     }
 }
 
