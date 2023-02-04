@@ -20,6 +20,9 @@
         <PageTitle>Alliance Editor</PageTitle>
         <div class="container-fluid">
             <RadzenCard>
+                SHIPYARD FEE
+                CHECK OTHER ALLIANCE NAMES BEFORE ACCEPTING EDITS ON THE SERVER
+                CHANGE LEADER
                 <RadzenText TextStyle="TextStyle.H5" TagName="TagName.H5" TextAlign="TextAlign.Center">Run this command ingame to confirm changes</RadzenText>
                 <RadzenText TextStyle="TextStyle.H6" TagName="TagName.H6" TextAlign="TextAlign.Center" contenteditable="false">!alliance accept</RadzenText>
                 <RadzenText TextStyle="TextStyle.H6" TagName="TagName.H6" TextAlign="TextAlign.Center" contenteditable="false">Session Expires in</RadzenText>
@@ -50,12 +53,35 @@
                 </div>
             </div>
             <div class="row px-3">
-                <div class="col-md-6 col-lg-12 p-3">
+                   <div class="col-md-6 col-lg-4 p-3">
+                    <RadzenCard>
+                        <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H4">Alliance Leader</RadzenText>
+                        <RadzenDropDown AllowClear="true" TValue="string" Class="w-100"
+                                                        Data=@(package.SteamIdsAndNames.Select(x => new RankItem(){PlayerName = x.Value, SteamId = x.Key}).ToList().OrderByDescending(x => x.PlayerName)) TextProperty="PlayerName" ValueProperty="SteamId"
+                                                        Change=@(args => LeaderChanged(args)) Value="@alliance.SupremeLeader" />
+                    </RadzenCard>
+                </div>
+
+                <div class="col-md-6 col-lg-4 p-3">
+                    <RadzenCard>
+                        <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H4">Chat Color Picker</RadzenText>
+                        <RadzenColorPicker @bind-Value="@color" ShowHSV="true" ShowRGBA="true" ShowColors="true" Change=@(args => @ColorChange()) />
+
+                        @*   <RadzenNumeric @bind-Value="@alliance.leadertax" Class="w-100" />*@
+                    </RadzenCard>
+                </div>
+                <div class="col-md-6 col-lg-4 p-3">
+                    <RadzenCard>
+                        <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H4">Shipyard Fee</RadzenText>
+                        <NumericPicker @bind-Value="@alliance.ShipyardFee" Min="0" />
+                    </RadzenCard>
+                </div>
+
+                     <div class="col-md-6 col-lg-12 p-3">
                     <RadzenCard>
                         <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H4">Description</RadzenText>
                         <TextEdit @bind-Value="@alliance.description" Class="w-100" MaskType="MaskType.RegEx" EditMask="[0-9a-zA-Z ]{0,2000}$" />
-                        <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H4">Chat Color Picker</RadzenText>
-                        <RadzenColorPicker @bind-Value="@color" ShowHSV="true" ShowRGBA="true" ShowColors="true" Change=@(args => @ColorChange()) />
+
                     </RadzenCard>
 
                 </div>
@@ -175,7 +201,7 @@ taxRate = x.Value.taxRate
 
                                         <DataGridColumn TItem="RankItem" Field="PlayerName" Caption="Player Name" Editable="false">
                                         </DataGridColumn>
-                                           <DataGridColumn TItem="RankItem" Field="SteamId" Caption="Steam Id" Editable="false">
+                                        <DataGridColumn TItem="RankItem" Field="SteamId" Caption="Steam Id" Editable="false">
                                         </DataGridColumn>
                                         <DataGridColumn TItem="RankItem" Caption="Rank" Editable="true">
                                             <DisplayTemplate>
@@ -221,21 +247,25 @@ else
 }
 
 
-
 @code {
     List<AlliancesPlugin.Alliances.AccessLevel> Permissions = new List<AlliancesPlugin.Alliances.AccessLevel>();
 
     public bool collapse1Visible = true;
     public bool collapse2Visible = true;
 
-    public async Task ColorChange(){
+    public async Task LeaderChanged(Object item){
+        return;
+    }
+
+    public async Task ColorChange()
+    {
 
         var temp = color.Replace("rgb(", "").Replace(")", "").Replace(" ", "");
         var split = temp.Split(",");
 
-        alliance.r = int.Parse(split[0]); 
-        alliance.g = int.Parse(split[1]);  
-        alliance.b = int.Parse(split[2]); 
+        alliance.r = int.Parse(split[0]);
+        alliance.g = int.Parse(split[1]);
+        alliance.b = int.Parse(split[2]);
 
         return;
     }
@@ -276,7 +306,8 @@ else
         {
             rank.taxRate /= 100;
         }
-        if (rank.Key != rank.RankName){
+        if (rank.Key != rank.RankName)
+        {
             var updateThese = alliance.PlayersCustomRank.Where(x => x.Value == rank.Key);
             @foreach (var item in updateThese)
             {
@@ -351,7 +382,8 @@ else
         {
             Deletes.Push(rank);
             var unrankThese = alliance.PlayersCustomRank.Where(x => x.Value == rank.Key);
-            @foreach (var item in unrankThese){
+            @foreach (var item in unrankThese)
+            {
                 alliance.PlayersCustomRank.Remove(item.Key);
             }
 
