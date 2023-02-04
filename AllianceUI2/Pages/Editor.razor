@@ -60,16 +60,11 @@
             <div class="row px-3">
                 <div class="col-md-6 col-lg-12 p-3">
                     <RadzenButton Click=@(args => NewRank()) Icon="add" ButtonStyle="ButtonStyle.Success" Size="ButtonSize.Small" Text="Add" />
-                    <RadzenButton Click=@(args => Undo()) Icon="undo" ButtonStyle="ButtonStyle.Primary" Size="ButtonSize.Small" Text="Undo Delete" />
 
-                    <Accordion>
-                        <Collapse Visible="@collapse1Visible">
-                            <CollapseHeader>
-                                <Heading Size="HeadingSize.Is5">
-                                    <AccordionToggle>Ranks</AccordionToggle>
-                                </Heading>
-                            </CollapseHeader>
-                            <CollapseBody>
+                    <RadzenAccordion Multiple="true">
+                        <Items>
+                            <RadzenAccordionItem Text="Ranks" Icon="military_tech" Selected="true">
+
 
                                 <DataGrid TItem="AlliancesPlugin.Alliances.RankPermissions"
                                   Data="@alliance.CustomRankPermissions.Select(x => new RankPermissions(){
@@ -96,6 +91,9 @@ taxRate = x.Value.taxRate
                                             <SaveCommandTemplate>
                                                 <RadzenButton ButtonStyle="ButtonStyle.Info" Icon="save" Click="@(args => { Updated(@context.Item); context.Clicked.InvokeAsync(); } )"></RadzenButton>
                                             </SaveCommandTemplate>
+                                            <NewCommandTemplate>
+
+                                            </NewCommandTemplate>
                                             <CancelCommandTemplate>
                                                 <RadzenButton ButtonStyle="ButtonStyle.Info" Icon="cancel" Click="@(args => context.Clicked.InvokeAsync())"></RadzenButton>
                                             </CancelCommandTemplate>
@@ -108,7 +106,7 @@ taxRate = x.Value.taxRate
                                         </DataGridCommandColumn>
                                         <DataGridColumn TItem="AlliancesPlugin.Alliances.RankPermissions" Field="RankName" Caption="Rank Name" Editable="true">
                                             <EditTemplate>
-                                                <TextEdit Text="@((string)context.CellValue)" TextChanged="@(v => { context.CellValue = v ; context.Item.RankName = v;} )" MaskType="MaskType.RegEx" EditMask="[0-9a-zA-Z ]{3,25}$" ReadOnly="@(@context.Item.Key == " Unranked")" />
+                                                <TextEdit Text="@((string)context.CellValue)" TextChanged="@(v => { context.CellValue = v ; context.Item.RankName = v;} )" MaskType="MaskType.RegEx" EditMask="[0-9a-zA-Z ]{0,25}$" ReadOnly="@(@context.Item.Key == " Unranked")" />
                                             </EditTemplate>
                                         </DataGridColumn>
                                         <DataGridColumn TItem="AlliancesPlugin.Alliances.RankPermissions" Field="taxRate" Caption="Tax Rate %" Editable="true">
@@ -138,18 +136,12 @@ taxRate = x.Value.taxRate
                                         </DataGridColumn>
                                     </ChildContent>
                                 </DataGrid>
-                            </CollapseBody>
-                        </Collapse>
-                        <Collapse Visible="@collapse2Visible">
-                            <CollapseHeader>
-                                <Heading Size="HeadingSize.Is5">
-                                    <AccordionToggle>Players Ranks</AccordionToggle>
-                                </Heading>
-                            </CollapseHeader>
-                            <CollapseBody>
+
+                            </RadzenAccordionItem>
+                            <RadzenAccordionItem Text="Player Ranks" Icon="groups" Selected="true">
                                 <DataGrid TItem="RankItem"
                                   Data="@package.SteamIdsAndNames.Select(x => new RankItem(){ SteamId = x.Key, PlayerName = x.Value}).ToList()"
-                                  EditMode="Blazorise.DataGrid.DataGridEditMode.Form"
+                                  EditMode="Blazorise.DataGrid.DataGridEditMode.Popup"
                                   SelectionMode="Blazorise.DataGrid.DataGridSelectionMode.Single"
                                   ShowPager="false"
                                   ShowPageSizes="false"
@@ -166,6 +158,10 @@ taxRate = x.Value.taxRate
                                             <CancelCommandTemplate>
                                                 <RadzenButton ButtonStyle="ButtonStyle.Info" Icon="cancel" Click="@(args => context.Clicked.InvokeAsync())"></RadzenButton>
                                             </CancelCommandTemplate>
+                                            <SaveCommandTemplate>
+                                            </SaveCommandTemplate>
+                                            <NewCommandTemplate>
+                                            </NewCommandTemplate>
                                             <EditCommandTemplate>
                                                 <RadzenButton ButtonStyle="ButtonStyle.Info" Icon="edit" Click="@(args => context.Clicked.InvokeAsync())"></RadzenButton>
                                             </EditCommandTemplate>
@@ -174,10 +170,9 @@ taxRate = x.Value.taxRate
                                             </DeleteCommandTemplate>
                                         </DataGridCommandColumn>
 
-                                        <DataGridColumn TItem=" RankItem" Field="PlayerName" Caption="Player Name" Editable="false">
-                                            <DisplayTemplate>
-                                                <p>@context.PlayerName - @context.SteamId</p>
-                                            </DisplayTemplate>
+                                        <DataGridColumn TItem="RankItem" Field="PlayerName" Caption="Player Name" Editable="false">
+                                        </DataGridColumn>
+                                           <DataGridColumn TItem="RankItem" Field="SteamId" Caption="Steam Id" Editable="false">
                                         </DataGridColumn>
                                         <DataGridColumn TItem="RankItem" Caption="Rank" Editable="true">
                                             <DisplayTemplate>
@@ -191,31 +186,23 @@ taxRate = x.Value.taxRate
                                                 }
                                             </DisplayTemplate>
                                             <EditTemplate>
-                                                <Dropdown Direction="Direction.Down">
-                                                    <DropdownToggle Color="Color.Primary">
-                                                        @if (@alliance.PlayersCustomRank.TryGetValue(@context.Item.SteamId, out var rank))
-                                                        {
-                                                            <p>@rank</p>
-                                                        }
-                                                        else
-                                                        {
-                                                            <p>Unranked</p>
-                                                        }
-                                                    </DropdownToggle>
-                                                    <DropdownMenu>
-                                                        @foreach (var rank in @alliance.CustomRankPermissions.OrderByDescending(x => x.Value.permissionLevel))
-                                                        {
-                                                            <DropdownItem Clicked="@(_ => RankChange(@context.Item.SteamId, @rank.Key))">@rank.Key</DropdownItem>
-                                                        }
-                                                    </DropdownMenu>
-                                                </Dropdown>
+                                                @{
+                                                    var rank = "Unranked";
+                                                    @if (@alliance.PlayersCustomRank.TryGetValue(@context.Item.SteamId, out var rank2))
+                                                    {
+                                                        rank = rank2;
+                                                    }
+                                                    <RadzenDropDown AllowClear="true" TValue="string" Class="w-100"
+                                                        Data=@(alliance.CustomRankPermissions.OrderByDescending(x => x.Value.permissionLevel).Select(x => x.Key).Distinct())
+                                                        Change=@(args => RankChange(@context.Item.SteamId, args.ToString())) Value="@rank" />
+                                                }
                                             </EditTemplate>
                                         </DataGridColumn>
                                     </ChildContent>
                                 </DataGrid>
-                            </CollapseBody>
-                        </Collapse>
-                    </Accordion>
+                            </RadzenAccordionItem>
+                        </Items>
+                    </RadzenAccordion>
                 </div>
             </div>
         </div>
@@ -271,6 +258,13 @@ else
         while (rank.taxRate > 1)
         {
             rank.taxRate /= 100;
+        }
+        if (rank.Key != rank.RankName){
+            var updateThese = alliance.PlayersCustomRank.Where(x => x.Value == rank.Key);
+            @foreach (var item in updateThese)
+            {
+                alliance.PlayersCustomRank[item.Key] = rank.RankName;
+            }
         }
         if (alliance.CustomRankPermissions.ContainsKey(rank.Key) && rank.Key != rank.RankName)
         {
@@ -339,6 +333,11 @@ else
         if (confirmDelete)
         {
             Deletes.Push(rank);
+            var unrankThese = alliance.PlayersCustomRank.Where(x => x.Value == rank.Key);
+            @foreach (var item in unrankThese){
+                alliance.PlayersCustomRank.Remove(item.Key);
+            }
+    
             alliance.CustomRankPermissions.Remove(rank.Key);
             await GridRef.ClearFilter();
         }
