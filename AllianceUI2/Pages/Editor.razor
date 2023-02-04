@@ -54,7 +54,10 @@
                     <RadzenCard>
                         <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H4">Description</RadzenText>
                         <TextEdit @bind-Value="@alliance.description" Class="w-100" MaskType="MaskType.RegEx" EditMask="[0-9a-zA-Z ]{0,2000}$" />
+                        <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H4">Chat Color Picker</RadzenText>
+                        <RadzenColorPicker @bind-Value="@color" ShowHSV="true" ShowRGBA="true" ShowColors="true" Change=@(args => @ColorChange()) />
                     </RadzenCard>
+
                 </div>
             </div>
             <div class="row px-3">
@@ -225,6 +228,20 @@ else
     public bool collapse1Visible = true;
     public bool collapse2Visible = true;
 
+    public async Task ColorChange(){
+
+        var temp = color.Replace("rgb(", "").Replace(")", "").Replace(" ", "");
+        var split = temp.Split(",");
+
+        alliance.r = int.Parse(split[0]); 
+        alliance.g = int.Parse(split[1]);  
+        alliance.b = int.Parse(split[2]); 
+
+        return;
+    }
+
+    public string color { get; set; }
+
     public async Task RankChange(ulong steamid, string newRank)
     {
         alliance.PlayersCustomRank.Remove(steamid);
@@ -337,7 +354,7 @@ else
             @foreach (var item in unrankThese){
                 alliance.PlayersCustomRank.Remove(item.Key);
             }
-    
+
             alliance.CustomRankPermissions.Remove(rank.Key);
             await GridRef.ClearFilter();
         }
@@ -385,6 +402,7 @@ else
                 Permissions.Add(perm);
             }
             HasData = true;
+            color = $"rgb({alliance.r}, {alliance.g}, {alliance.b})";
         }
         else
         {
