@@ -16,9 +16,9 @@
   </ItemGroup>
   <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
     <Import Project="$(NuGetPackageRoot)radzen.blazor\4.6.3\buildTransitive\Radzen.Blazor.props" Condition="Exists('$(NuGetPackageRoot)radzen.blazor\4.6.3\buildTransitive\Radzen.Blazor.props')" />
-    <Import Project="$(NuGetPackageRoot)blazorise\1.1.6\buildTransitive\Blazorise.props" Condition="Exists('$(NuGetPackageRoot)blazorise\1.1.6\buildTransitive\Blazorise.props')" />
-    <Import Project="$(NuGetPackageRoot)blazorise.snackbar\1.1.6\buildTransitive\Blazorise.Snackbar.props" Condition="Exists('$(NuGetPackageRoot)blazorise.snackbar\1.1.6\buildTransitive\Blazorise.Snackbar.props')" />
-    <Import Project="$(NuGetPackageRoot)blazorise.datagrid\1.1.6\buildTransitive\Blazorise.DataGrid.props" Condition="Exists('$(NuGetPackageRoot)blazorise.datagrid\1.1.6\buildTransitive\Blazorise.DataGrid.props')" />
-    <Import Project="$(NuGetPackageRoot)blazorise.bootstrap\1.1.6\buildTransitive\Blazorise.Bootstrap.props" Condition="Exists('$(NuGetPackageRoot)blazorise.bootstrap\1.1.6\buildTransitive\Blazorise.Bootstrap.props')" />
+    <Import Project="$(NuGetPackageRoot)blazorise\1.2.0\buildTransitive\Blazorise.props" Condition="Exists('$(NuGetPackageRoot)blazorise\1.2.0\buildTransitive\Blazorise.props')" />
+    <Import Project="$(NuGetPackageRoot)blazorise.snackbar\1.2.0\buildTransitive\Blazorise.Snackbar.props" Condition="Exists('$(NuGetPackageRoot)blazorise.snackbar\1.2.0\buildTransitive\Blazorise.Snackbar.props')" />
+    <Import Project="$(NuGetPackageRoot)blazorise.datagrid\1.2.0\buildTransitive\Blazorise.DataGrid.props" Condition="Exists('$(NuGetPackageRoot)blazorise.datagrid\1.2.0\buildTransitive\Blazorise.DataGrid.props')" />
+    <Import Project="$(NuGetPackageRoot)blazorise.bootstrap\1.2.0\buildTransitive\Blazorise.Bootstrap.props" Condition="Exists('$(NuGetPackageRoot)blazorise.bootstrap\1.2.0\buildTransitive\Blazorise.Bootstrap.props')" />
   </ImportGroup>
 </Project>

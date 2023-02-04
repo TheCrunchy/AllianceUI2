@@ -1,130 +1,266 @@
 ﻿@using AlliancesPlugin;
 @using AlliancesPlugin.Alliances;
-@using Blazorise
+@using Blazorise;
 @using Data;
 @page "/alliances/edit/{Id:guid}"
 @inject IJSRuntime JsRuntime
 @inject TooltipService tooltipService
 
-<PageTitle>Alliance Editor</PageTitle>
-<div class="container-fluid">
-       <RadzenCard>
-        <RadzenText TextStyle="TextStyle.H4" TagName="TagName.H4" TextAlign="TextAlign.Center">Run this command ingame to confirm changes</RadzenText>
-        <RadzenText TextStyle="TextStyle.H5" TagName="TagName.H5" TextAlign="TextAlign.Center" contenteditable="false">!alliance acceptChanges @Id</RadzenText>
-    </RadzenCard>
-    <div class="row px-3">
-        <div class="col-md-6 col-lg-4 p-3">
+@if (@HasData)
+{
+    @if (DateTime.Now >= package.ExpiresAt)
+    {
+        <RadzenCard>
+            <RadzenText TextStyle="TextStyle.H4" TagName="TagName.H4" TextAlign="TextAlign.Center">Session has expired</RadzenText>
+            <RadzenText TextStyle="TextStyle.H5" TagName="TagName.H5" TextAlign="TextAlign.Center" contenteditable="false">To start a new session, Use the edit command ingame.</RadzenText>
+        </RadzenCard>
+    }
+    else
+    {
+        <PageTitle>Alliance Editor</PageTitle>
+        <div class="container-fluid">
             <RadzenCard>
-                <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H4">Alliance Name</RadzenText>
-                <TextEdit @bind-Text="@alliance.name" MaskType="MaskType.RegEx" EditMask="[0-9a-zA-Z ]{3,25}$" Class="w-100" />
-            </RadzenCard>
-        </div>
-        <div class="col-md-6 col-lg-4 p-3">
-            <RadzenCard>
-                <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H4">Leader Title</RadzenText>
-                                <TextEdit @bind-Text="@alliance.LeaderTitle" MaskType="MaskType.RegEx" EditMask="[0-9a-zA-Z ]{3,25}$" Class="w-100" />
-              @*  <RadzenTextBox @bind-Value="@alliance.LeaderTitle" Class="w-100" />*@
-            </RadzenCard>
-        </div>
-        <div class="col-md-6 col-lg-4 p-3">
-            <RadzenCard>
-                <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H4">Leader Tax Rate</RadzenText>
-                     <NumericPicker @bind-Value="@alliance.leadertax" Max="50" Min="0" Class="w-100"/>
-             @*   <RadzenNumeric @bind-Value="@alliance.leadertax" Class="w-100" />*@
-            </RadzenCard>
-        </div>
-    </div>
-    <div class="row px-3">
-        <div class="col-md-6 col-lg-12 p-3">
-            <RadzenCard>
-                <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H4">Description</RadzenText>
-                <RadzenTextArea @bind-Value="@alliance.description" Class="w-100" />
-            </RadzenCard>
-        </div>
-    </div>
-    <div class="row px-3">
-        <div class="col-md-6 col-lg-12 p-3">
-            <RadzenButton Click=@(args => NewRank()) Icon="add" ButtonStyle="ButtonStyle.Success" Size="ButtonSize.Small" Text="Add" />
-            <RadzenButton Click=@(args => Undo()) Icon="undo" ButtonStyle="ButtonStyle.Primary" Size="ButtonSize.Small" Text="Undo Delete" />
+                <RadzenText TextStyle="TextStyle.H5" TagName="TagName.H5" TextAlign="TextAlign.Center">Run this command ingame to confirm changes</RadzenText>
+                <RadzenText TextStyle="TextStyle.H6" TagName="TagName.H6" TextAlign="TextAlign.Center" contenteditable="false">!alliance accept</RadzenText>
+                <RadzenText TextStyle="TextStyle.H6" TagName="TagName.H6" TextAlign="TextAlign.Center" contenteditable="false">Session Expires in</RadzenText>
+                <CountdownComponent EndTime="@package.ExpiresAt"></CountdownComponent>
+                <RadzenText TextStyle="TextStyle.H6" TagName="TagName.H6" TextAlign="TextAlign.Center" contenteditable="false">          <RadzenButton Click=@(args => Clicked()) Text="Save" ButtonStyle="ButtonStyle.Success" Size="ButtonSize.Large" /></RadzenText>
 
-            <DataGrid TItem="AlliancesPlugin.Alliances.RankPermissions"
-                      Data="@alliance.CustomRankPermissions.Select(x => new RankPermissions(){
+            </RadzenCard>
+            <div class="row px-3">
+                <div class="col-md-6 col-lg-4 p-3">
+                    <RadzenCard>
+                        <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H4">Alliance Name</RadzenText>
+                        <TextEdit @bind-Text="@alliance.name" MaskType="MaskType.RegEx" EditMask="[0-9a-zA-Z]{0,50}$" Class="w-100" />
+                    </RadzenCard>
+                </div>
+                <div class="col-md-6 col-lg-4 p-3">
+                    <RadzenCard>
+                        <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H4">Leader Title</RadzenText>
+                        <TextEdit @bind-Text="@alliance.LeaderTitle" MaskType="MaskType.RegEx" EditMask="[0-9a-zA-Z ]{0,50}$" Class="w-100" />
+                        @*  <RadzenTextBox @bind-Value="@alliance.LeaderTitle" Class="w-100" />*@
+                    </RadzenCard>
+                </div>
+                <div class="col-md-6 col-lg-4 p-3">
+                    <RadzenCard>
+                        <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H4">Leader Tax Rate</RadzenText>
+                        <NumericPicker @bind-Value="@alliance.leadertax" Max="50" Min="0" Class="w-100" />
+                        @*   <RadzenNumeric @bind-Value="@alliance.leadertax" Class="w-100" />*@
+                    </RadzenCard>
+                </div>
+            </div>
+            <div class="row px-3">
+                <div class="col-md-6 col-lg-12 p-3">
+                    <RadzenCard>
+                        <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H4">Description</RadzenText>
+                        <TextEdit @bind-Value="@alliance.description" Class="w-100" MaskType="MaskType.RegEx" EditMask="[0-9a-zA-Z ]{0,2000}$" />
+                    </RadzenCard>
+                </div>
+            </div>
+            <div class="row px-3">
+                <div class="col-md-6 col-lg-12 p-3">
+                    <RadzenButton Click=@(args => NewRank()) Icon="add" ButtonStyle="ButtonStyle.Success" Size="ButtonSize.Small" Text="Add" />
+                    <RadzenButton Click=@(args => Undo()) Icon="undo" ButtonStyle="ButtonStyle.Primary" Size="ButtonSize.Small" Text="Undo Delete" />
+
+                    <Accordion>
+                        <Collapse Visible="@collapse1Visible">
+                            <CollapseHeader>
+                                <Heading Size="HeadingSize.Is5">
+                                    <AccordionToggle>Ranks</AccordionToggle>
+                                </Heading>
+                            </CollapseHeader>
+                            <CollapseBody>
+
+                                <DataGrid TItem="AlliancesPlugin.Alliances.RankPermissions"
+                                  Data="@alliance.CustomRankPermissions.Select(x => new RankPermissions(){
 Key = x.Key,
 RankName = x.Key,
 permissions = x.Value.permissions,
 permissionLevel = x.Value.permissionLevel,
 taxRate = x.Value.taxRate
 }).OrderByDescending(x => x.permissionLevel)"
-                      EditMode="Blazorise.DataGrid.DataGridEditMode.Popup"
-                      SelectionMode="Blazorise.DataGrid.DataGridSelectionMode.Single"
-                      ShowPager="false"
-                      ShowPageSizes="false"
-                      Editable="true"
-                      Responsive="true"
-                      Sortable="true"
-                      Striped="true"
-                      PageSize="50"
-                      CommandMode="DataGridCommandMode.Commands"
-                      SubmitFormOnEnter="false"
-                      Filterable="true" PopupSize="Blazorise.ModalSize.ExtraLarge" @ref="GridRef">
-                <ChildContent>
-                    <DataGridCommandColumn TItem="AlliancesPlugin.Alliances.RankPermissions" DeleteCommandAllowed="true">
-                        <SaveCommandTemplate>
-                            <RadzenButton ButtonStyle="ButtonStyle.Info" Icon="save" Click="@(args => { Updated(@context.Item); context.Clicked.InvokeAsync(); } )"></RadzenButton>
-                        </SaveCommandTemplate>
-                        <CancelCommandTemplate>
-                            <RadzenButton ButtonStyle="ButtonStyle.Info" Icon="cancel" Click="@(args => context.Clicked.InvokeAsync())"></RadzenButton>
-                        </CancelCommandTemplate>
-                        <EditCommandTemplate>
-                            <RadzenButton ButtonStyle="ButtonStyle.Info" Icon="edit" Click="@(args => context.Clicked.InvokeAsync())"></RadzenButton>
-                        </EditCommandTemplate>
-                        <DeleteCommandTemplate>
-                            <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="delete" Click="@(args => Delete(@context.Item))"></RadzenButton>
-                        </DeleteCommandTemplate>
-                    </DataGridCommandColumn>
-                    <DataGridColumn TItem="AlliancesPlugin.Alliances.RankPermissions" Field="RankName" Caption="Rank Name" Editable="true">
-                        <EditTemplate>
-                            <TextEdit Text="@((string)context.CellValue)" TextChanged="@(v => { context.CellValue = v ; context.Item.RankName = v;} )" MaskType="MaskType.RegEx" EditMask="[0-9a-zA-Z ]{3,25}$" ReadOnly="@(@context.Item.Key == " Unranked")" />
-                        </EditTemplate>
-                    </DataGridColumn>
-                    <DataGridColumn TItem="AlliancesPlugin.Alliances.RankPermissions" Field="taxRate" Caption="Tax Rate %" Editable="true">
-                        <DisplayTemplate>
-                            <p>@(@context.taxRate)%</p>
-                        </DisplayTemplate>
-                        <EditTemplate>
-                            <NumericPicker TValue="float" Value="@((float)context.CellValue)" ValueChanged="@( v => { context.CellValue = v; } )" Max="50" Min="0">
-                            </NumericPicker>
-                        </EditTemplate>
-                    </DataGridColumn>
-                    <DataGridColumn TItem="AlliancesPlugin.Alliances.RankPermissions" Field="permissionLevel" Caption="Permission Level" Editable="true" />
-                    <DataGridColumn TItem="AlliancesPlugin.Alliances.RankPermissions" Field="permissions" Caption="Permissions" Editable="true" Displayable="false" Width="200%" PopupFieldColumnSize="@(Blazorise.ColumnSize.IsFull as Blazorise.IFluentColumn)">
-                        <EditTemplate>
-                            <div class="row px-3">
-                                @foreach (var item in Permissions)
-                                {
-                                    <div class="col-md-12 col-lg-3 p-3">
-                                        <RadzenCard>
-                                            <RadzenCheckBox Value="@context.Item.permissions.Contains(item)" Name="@item.ToString()" TValue="bool" Change=@(args => OnChange(args, item, context)) />
-                                            <RadzenLabel Text="@item.ToString()" Component="@item.ToString()" Style="margin-left: 8px; vertical-align: middle;" />
-                                        </RadzenCard>
-                                    </div>
-                                }
-                            </div>
-                        </EditTemplate>
-                    </DataGridColumn>
-                </ChildContent>
-            </DataGrid>
+                                  EditMode="Blazorise.DataGrid.DataGridEditMode.Popup"
+                                  SelectionMode="Blazorise.DataGrid.DataGridSelectionMode.Single"
+                                  ShowPager="false"
+                                  ShowPageSizes="false"
+                                  Editable="true"
+                                  Responsive="true"
+                                  Sortable="true"
+                                  Striped="true"
+                                  PageSize="50"
+                                  CommandMode="DataGridCommandMode.Commands"
+                                  SubmitFormOnEnter="false"
+                                  Filterable="true" PopupSize="Blazorise.ModalSize.ExtraLarge" @ref="GridRef">
+                                    <ChildContent>
+                                        <DataGridCommandColumn TItem="AlliancesPlugin.Alliances.RankPermissions" DeleteCommandAllowed="true">
+                                            <SaveCommandTemplate>
+                                                <RadzenButton ButtonStyle="ButtonStyle.Info" Icon="save" Click="@(args => { Updated(@context.Item); context.Clicked.InvokeAsync(); } )"></RadzenButton>
+                                            </SaveCommandTemplate>
+                                            <CancelCommandTemplate>
+                                                <RadzenButton ButtonStyle="ButtonStyle.Info" Icon="cancel" Click="@(args => context.Clicked.InvokeAsync())"></RadzenButton>
+                                            </CancelCommandTemplate>
+                                            <EditCommandTemplate>
+                                                <RadzenButton ButtonStyle="ButtonStyle.Info" Icon="edit" Click="@(args => context.Clicked.InvokeAsync())"></RadzenButton>
+                                            </EditCommandTemplate>
+                                            <DeleteCommandTemplate>
+                                                <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="delete" Click="@(args => Delete(@context.Item))"></RadzenButton>
+                                            </DeleteCommandTemplate>
+                                        </DataGridCommandColumn>
+                                        <DataGridColumn TItem="AlliancesPlugin.Alliances.RankPermissions" Field="RankName" Caption="Rank Name" Editable="true">
+                                            <EditTemplate>
+                                                <TextEdit Text="@((string)context.CellValue)" TextChanged="@(v => { context.CellValue = v ; context.Item.RankName = v;} )" MaskType="MaskType.RegEx" EditMask="[0-9a-zA-Z ]{3,25}$" ReadOnly="@(@context.Item.Key == " Unranked")" />
+                                            </EditTemplate>
+                                        </DataGridColumn>
+                                        <DataGridColumn TItem="AlliancesPlugin.Alliances.RankPermissions" Field="taxRate" Caption="Tax Rate %" Editable="true">
+                                            <DisplayTemplate>
+                                                <p>@(@context.taxRate)%</p>
+                                            </DisplayTemplate>
+                                            <EditTemplate>
+                                                <NumericPicker TValue="float" Value="@((float)context.CellValue)" ValueChanged="@( v => { context.CellValue = v; } )" Max="50" Min="0">
+                                                </NumericPicker>
+                                            </EditTemplate>
+                                        </DataGridColumn>
+                                        <DataGridColumn TItem="AlliancesPlugin.Alliances.RankPermissions" Field="permissionLevel" Caption="Permission Level" Editable="true" />
+                                        <DataGridColumn TItem="AlliancesPlugin.Alliances.RankPermissions" Field="permissions" Caption="Permissions" Editable="true" Displayable="false" Width="200%" PopupFieldColumnSize="@(Blazorise.ColumnSize.IsFull as Blazorise.IFluentColumn)">
+                                            <EditTemplate>
+                                                <div class="row px-3">
+                                                    @foreach (var item in Permissions)
+                                                    {
+                                                        <div class="col-md-12 col-lg-3 p-3">
+                                                            <RadzenCard>
+                                                                <RadzenCheckBox Value="@context.Item.permissions.Contains(item)" Name="@item.ToString()" TValue="bool" Change=@(args => OnChange(args, item, context)) />
+                                                                <RadzenLabel Text="@item.ToString()" Component="@item.ToString()" Style="margin-left: 8px; vertical-align: middle;" />
+                                                            </RadzenCard>
+                                                        </div>
+                                                    }
+                                                </div>
+                                            </EditTemplate>
+                                        </DataGridColumn>
+                                    </ChildContent>
+                                </DataGrid>
+                            </CollapseBody>
+                        </Collapse>
+                        <Collapse Visible="@collapse2Visible">
+                            <CollapseHeader>
+                                <Heading Size="HeadingSize.Is5">
+                                    <AccordionToggle>Players Ranks</AccordionToggle>
+                                </Heading>
+                            </CollapseHeader>
+                            <CollapseBody>
+                                <DataGrid TItem="RankItem"
+                                  Data="@package.SteamIdsAndNames.Select(x => new RankItem(){ SteamId = x.Key, PlayerName = x.Value}).ToList()"
+                                  EditMode="Blazorise.DataGrid.DataGridEditMode.Form"
+                                  SelectionMode="Blazorise.DataGrid.DataGridSelectionMode.Single"
+                                  ShowPager="false"
+                                  ShowPageSizes="false"
+                                  Editable="true"
+                                  Responsive="true"
+                                  Sortable="true"
+                                  Striped="true"
+                                  PageSize="50"
+                                  CommandMode="DataGridCommandMode.Commands"
+                                  SubmitFormOnEnter="false"
+                                  Filterable="true" PopupSize="Blazorise.ModalSize.ExtraLarge">
+                                    <ChildContent>
+                                        <DataGridCommandColumn TItem="RankItem" DeleteCommandAllowed="true">
+                                            <CancelCommandTemplate>
+                                                <RadzenButton ButtonStyle="ButtonStyle.Info" Icon="cancel" Click="@(args => context.Clicked.InvokeAsync())"></RadzenButton>
+                                            </CancelCommandTemplate>
+                                            <EditCommandTemplate>
+                                                <RadzenButton ButtonStyle="ButtonStyle.Info" Icon="edit" Click="@(args => context.Clicked.InvokeAsync())"></RadzenButton>
+                                            </EditCommandTemplate>
+                                            <DeleteCommandTemplate>
+                                                <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="delete" Click="@(args => alliance.PlayersCustomRank.Remove(context.Item.SteamId))"></RadzenButton>
+                                            </DeleteCommandTemplate>
+                                        </DataGridCommandColumn>
 
+                                        <DataGridColumn TItem=" RankItem" Field="PlayerName" Caption="Player Name" Editable="false">
+                                            <DisplayTemplate>
+                                                <p>@context.PlayerName - @context.SteamId</p>
+                                            </DisplayTemplate>
+                                        </DataGridColumn>
+                                        <DataGridColumn TItem="RankItem" Caption="Rank" Editable="true">
+                                            <DisplayTemplate>
+                                                @if (@alliance.PlayersCustomRank.TryGetValue(@context.SteamId, out var rank))
+                                                {
+                                                    <p>@rank</p>
+                                                }
+                                                else
+                                                {
+                                                    <p>Unranked</p>
+                                                }
+                                            </DisplayTemplate>
+                                            <EditTemplate>
+                                                <Dropdown Direction="Direction.Down">
+                                                    <DropdownToggle Color="Color.Primary">
+                                                        @if (@alliance.PlayersCustomRank.TryGetValue(@context.Item.SteamId, out var rank))
+                                                        {
+                                                            <p>@rank</p>
+                                                        }
+                                                        else
+                                                        {
+                                                            <p>Unranked</p>
+                                                        }
+                                                    </DropdownToggle>
+                                                    <DropdownMenu>
+                                                        @foreach (var rank in @alliance.CustomRankPermissions.OrderByDescending(x => x.Value.permissionLevel))
+                                                        {
+                                                            <DropdownItem Clicked="@(_ => RankChange(@context.Item.SteamId, @rank.Key))">@rank.Key</DropdownItem>
+                                                        }
+                                                    </DropdownMenu>
+                                                </Dropdown>
+                                            </EditTemplate>
+                                        </DataGridColumn>
+                                    </ChildContent>
+                                </DataGrid>
+                            </CollapseBody>
+                        </Collapse>
+                    </Accordion>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
-<RadzenButton Click=@(args => Clicked()) Text="Save" ButtonStyle="ButtonStyle.Success" Size="ButtonSize.Small" />
+
+    }
+}
+else
+{
+    <RadzenCard>
+        <RadzenText TextStyle="TextStyle.H4" TagName="TagName.H4" TextAlign="TextAlign.Center">Not Found</RadzenText>
+        <RadzenText TextStyle="TextStyle.H5" TagName="TagName.H5" TextAlign="TextAlign.Center" contenteditable="false">Data not found. Use the edit command ingame.</RadzenText>
+    </RadzenCard>
+}
+
+
+
 @code {
     List<AlliancesPlugin.Alliances.AccessLevel> Permissions = new List<AlliancesPlugin.Alliances.AccessLevel>();
 
-    public async Task Clicked(){
-        dataService.SaveChanges(Id, alliance);
+    public bool collapse1Visible = true;
+    public bool collapse2Visible = true;
+
+    public async Task RankChange(ulong steamid, string newRank)
+    {
+        alliance.PlayersCustomRank.Remove(steamid);
+        if (newRank is not "Unranked")
+        {
+            alliance.PlayersCustomRank.Add(steamid, newRank);
+        }
+        return;
     }
+
+    public class RankItem
+    {
+        public string PlayerName { get; set; }
+        public ulong SteamId { get; set; }
+    }
+
+    public async Task Clicked()
+    {
+        dataService.SaveChanges(Id, alliance);
+        var confirmDelete = await JsRuntime.InvokeAsync<bool>("confirm", "Saving successful! Run the !alliance accept command to apply changes.");
+    }
+
+    public bool HasData = false;
 
     public async Task Updated(RankPermissions rank)
     {
@@ -139,6 +275,7 @@ taxRate = x.Value.taxRate
         if (alliance.CustomRankPermissions.ContainsKey(rank.Key) && rank.Key != rank.RankName)
         {
             alliance.CustomRankPermissions.Remove(rank.Key);
+            alliance.CustomRankPermissions.Remove(rank.RankName);
             rank.Key = rank.RankName;
             alliance.CustomRankPermissions.Add(rank.RankName, rank);
         }
@@ -156,6 +293,11 @@ taxRate = x.Value.taxRate
 
     public async Task NewRank()
     {
+        while (alliance.CustomRankPermissions.ContainsKey($"new{NewCount}"))
+        {
+            NewCount += 1;
+        }
+
         var newRank = new RankPermissions()
             {
                 RankName = $"new{NewCount}",
@@ -210,6 +352,7 @@ taxRate = x.Value.taxRate
     public Guid Id { get; set; }
 
     public AlliancesPlugin.Alliances.Alliance alliance { get; set; }
+    public AlliancePackage package { get; set; }
 
     public RadzenDataGrid<AlliancesPlugin.Alliances.RankPermissions> Grid { get; set; }
 
@@ -232,12 +375,21 @@ taxRate = x.Value.taxRate
     protected override async Task OnInitializedAsync()
     {
         var temp = dataService.GetPackage(Id);
-        alliance = temp.AllianceData;
-        Permissions.Clear();
-        var perms = Enum.GetValues(typeof(AlliancesPlugin.Alliances.AccessLevel));
-        foreach (AlliancesPlugin.Alliances.AccessLevel perm in perms)
+        if (temp != null)
         {
-            Permissions.Add(perm);
+            alliance = temp.AllianceData;
+            package = temp;
+            Permissions.Clear();
+            var perms = Enum.GetValues(typeof(AlliancesPlugin.Alliances.AccessLevel));
+            foreach (AlliancesPlugin.Alliances.AccessLevel perm in perms)
+            {
+                Permissions.Add(perm);
+            }
+            HasData = true;
+        }
+        else
+        {
+            HasData = false;
         }
 
         return;

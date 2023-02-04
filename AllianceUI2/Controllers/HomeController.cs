@@ -16,10 +16,12 @@ namespace AllianceUI2.Controllers
             this.dataService = dataService;
         }
 
-        [HttpGet]
-        public IActionResult PostAlliance(string allianceJson)
+        [HttpPost]
+        public IActionResult PostAlliance([FromBody] object allianceJson)
         {
-            AlliancePackage alliance = JsonConvert.DeserializeObject<AlliancePackage>(allianceJson);
+               AlliancePackage alliance = JsonConvert.DeserializeObject<AlliancePackage>(allianceJson.ToString());
+            // AlliancePackage alliance = allianceJson;
+            alliance.AllianceData.CustomRankPermissions.Remove("Unranked");
             alliance.AllianceData.CustomRankPermissions.Add("Unranked", alliance.AllianceData.UnrankedPerms);
             foreach (var rank in alliance.AllianceData.CustomRankPermissions)
             {
@@ -37,7 +39,7 @@ namespace AllianceUI2.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAlliance(Guid id)
+        public IActionResult GetAlliance(ulong id)
         {
             AlliancePackage alliance = dataService.GetPackage(id);
             if (alliance == null)
@@ -55,7 +57,8 @@ namespace AllianceUI2.Controllers
             {
                 alliance.AllianceData.leadertax /= 100;
             }
-            string allianceJson = JsonConvert.SerializeObject(alliance);
+            alliance.AllianceData.CustomRankPermissions.Remove("Unranked");
+            string allianceJson = JsonConvert.SerializeObject(alliance.AllianceData);
             return Ok(allianceJson);
         }
     }

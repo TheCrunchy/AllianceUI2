@@ -137,3 +137,9 @@ C:\Users\Cameron\Documents\3 Torch Plugins\AllianceUI2\AllianceUI2\bin\Debug\net
 C:\Users\Cameron\Documents\3 Torch Plugins\AllianceUI2\AllianceUI2\bin\Debug\net6.0\System.Web.Http.dll
 C:\Users\Cameron\Documents\3 Torch Plugins\AllianceUI2\AllianceUI2\bin\Debug\net6.0\Newtonsoft.Json.dll
 C:\Users\Cameron\Documents\3 Torch Plugins\AllianceUI2\AllianceUI2\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll
+C:\Users\Cameron\Documents\3 Torch Plugins\AllianceUI2\AllianceUI2\bin\Debug\net6.0\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\Cameron\Documents\3 Torch Plugins\AllianceUI2\AllianceUI2\bin\Debug\net6.0\RestSharp.xml
+C:\Users\Cameron\Documents\3 Torch Plugins\AllianceUI2\AllianceUI2\bin\Debug\net6.0\Microsoft.Bcl.AsyncInterfaces.xml
+C:\Users\Cameron\Documents\3 Torch Plugins\AllianceUI2\AllianceUI2\bin\Debug\net6.0\libman.json
+C:\Users\Cameron\Documents\3 Torch Plugins\AllianceUI2\AllianceUI2\bin\Debug\net6.0\Blazorise.Licensing.dll
+C:\Users\Cameron\Documents\3 Torch Plugins\AllianceUI2\AllianceUI2\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.dll

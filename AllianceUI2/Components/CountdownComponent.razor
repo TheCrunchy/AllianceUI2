@@ -1,0 +1,26 @@
+﻿<RadzenText TextStyle="TextStyle.H6" TagName="TagName.H6" TextAlign="TextAlign.Center">@timeLeft</RadzenText>
+
+@code {
+    [Parameter]
+    public DateTime EndTime { get; set; }
+
+    public string timeLeft { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var timer = new Timer(new TimerCallback(_ =>
+        {
+
+            var time = (EndTime - DateTime.Now);
+            if (time.Hours > 0){
+
+            }
+            timeLeft = $"{time.Hours} Hours {time.Minutes} Minutes {time.Seconds} Seconds";
+            InvokeAsync(() =>
+        {
+            StateHasChanged();
+        });
+
+        }), null, 1000, 1000);
+    }
+}

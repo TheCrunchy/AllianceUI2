@@ -13,7 +13,17 @@ namespace AllianceUI2.Data
                 return package;
             }
             return null;
-
+        }
+        public AlliancePackage GetPackage(ulong id)
+        {
+            var result = Data.Where(x => x.Value.SteamId == id);
+            if (result == null || !result.Any())
+            {
+                return null;
+            }
+            var lastEdited = result.OrderByDescending(x => x.Value.DateEdited);
+  
+            return lastEdited.First().Value;
         }
     
         public void StoreData(AlliancePackage package)
@@ -27,6 +37,7 @@ namespace AllianceUI2.Data
         public void SaveChanges(Guid id, Alliance alliance)
         {
             var data = Data[id];
+            data.DateEdited = DateTime.Now;
             data.AllianceData = alliance;
             Data[id] = data;
         }
