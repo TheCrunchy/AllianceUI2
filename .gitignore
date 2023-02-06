@@ -1,3 +1,4 @@
 
 *.pubxml
 AllianceUI2/Properties/PublishProfiles/crunchplugins.co.uk - Web Deploy.pubxml.user
+bin/
