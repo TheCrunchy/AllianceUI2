@@ -1,4 +1,24 @@
 
 *.pubxml
 AllianceUI2/Properties/PublishProfiles/crunchplugins.co.uk - Web Deploy.pubxml.user
-bin/
+#ignore thumbnails created by windows
+Thumbs.db
+#Ignore files build by Visual Studio
+*.user
+*.aps
+*.pch
+*.vspscc
+*_i.c
+*_p.c
+*.ncb
+*.suo
+*.bak
+*.cache
+*.ilk
+*.log
+AllianceUI2\[Bb]in
+[Dd]ebug*/
+*.sbr
+obj/
+[Rr]elease*/
+_ReSharper*/
