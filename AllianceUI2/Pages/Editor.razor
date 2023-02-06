@@ -1,7 +1,6 @@
-﻿@using AlliancesPlugin;
-@using AlliancesPlugin.Alliances;
-@using Blazorise;
+﻿@using Blazorise;
 @using Data;
+@using AllianceUI2.Models;
 @page "/alliances/edit/{Id:guid}"
 @inject IJSRuntime JsRuntime
 @inject TooltipService tooltipService
@@ -95,7 +94,7 @@
                             <RadzenAccordionItem Text="Ranks" Icon="military_tech" Selected="true">
 
 
-                                <DataGrid TItem="AlliancesPlugin.Alliances.RankPermissions"
+                                <DataGrid TItem="RankPermissions"
                                   Data="@alliance.CustomRankPermissions.Select(x => new RankPermissions(){
 Key = x.Key,
 RankName = x.Key,
@@ -116,7 +115,7 @@ taxRate = x.Value.taxRate
                                   SubmitFormOnEnter="false"
                                   Filterable="true" PopupSize="Blazorise.ModalSize.ExtraLarge" @ref="GridRef">
                                     <ChildContent>
-                                        <DataGridCommandColumn TItem="AlliancesPlugin.Alliances.RankPermissions" DeleteCommandAllowed="true">
+                                        <DataGridCommandColumn TItem="RankPermissions" DeleteCommandAllowed="true">
                                             <SaveCommandTemplate>
                                                 <RadzenButton ButtonStyle="ButtonStyle.Info" Icon="save" Click="@(args => { Updated(@context.Item); context.Clicked.InvokeAsync(); } )"></RadzenButton>
                                             </SaveCommandTemplate>
@@ -133,12 +132,12 @@ taxRate = x.Value.taxRate
                                                 <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="delete" Click="@(args => Delete(@context.Item))"></RadzenButton>
                                             </DeleteCommandTemplate>
                                         </DataGridCommandColumn>
-                                        <DataGridColumn TItem="AlliancesPlugin.Alliances.RankPermissions" Field="RankName" Caption="Rank Name" Editable="true">
+                                        <DataGridColumn TItem="RankPermissions" Field="RankName" Caption="Rank Name" Editable="true">
                                             <EditTemplate>
                                                 <TextEdit Text="@((string)context.CellValue)" TextChanged="@(v => { context.CellValue = v ; context.Item.RankName = v;} )" MaskType="MaskType.RegEx" EditMask="[0-9a-zA-Z ]{0,25}$" ReadOnly="@(@context.Item.Key == " Unranked")" />
                                             </EditTemplate>
                                         </DataGridColumn>
-                                        <DataGridColumn TItem="AlliancesPlugin.Alliances.RankPermissions" Field="taxRate" Caption="Tax Rate %" Editable="true">
+                                        <DataGridColumn TItem="RankPermissions" Field="taxRate" Caption="Tax Rate %" Editable="true">
                                             <DisplayTemplate>
                                                 <p>@(@context.taxRate)%</p>
                                             </DisplayTemplate>
@@ -147,8 +146,8 @@ taxRate = x.Value.taxRate
                                                 </NumericPicker>
                                             </EditTemplate>
                                         </DataGridColumn>
-                                        <DataGridColumn TItem="AlliancesPlugin.Alliances.RankPermissions" Field="permissionLevel" Caption="Permission Level" Editable="true" />
-                                        <DataGridColumn TItem="AlliancesPlugin.Alliances.RankPermissions" Field="permissions" Caption="Permissions" Editable="true" Displayable="false" Width="200%" PopupFieldColumnSize="@(Blazorise.ColumnSize.IsFull as Blazorise.IFluentColumn)">
+                                        <DataGridColumn TItem="RankPermissions" Field="permissionLevel" Caption="Permission Level" Editable="true" />
+                                        <DataGridColumn TItem="RankPermissions" Field="permissions" Caption="Permissions" Editable="true" Displayable="false" Width="200%" PopupFieldColumnSize="@(Blazorise.ColumnSize.IsFull as Blazorise.IFluentColumn)">
                                             <EditTemplate>
                                                 <div class="row px-3">
                                                     @foreach (var item in Permissions)
@@ -248,7 +247,7 @@ else
 
 
 @code {
-    List<AlliancesPlugin.Alliances.AccessLevel> Permissions = new List<AlliancesPlugin.Alliances.AccessLevel>();
+    List<AccessLevel> Permissions = new List<AccessLevel>();
 
     public bool collapse1Visible = true;
     public bool collapse2Visible = true;
@@ -343,7 +342,7 @@ else
         var newRank = new RankPermissions()
             {
                 RankName = $"new{NewCount}",
-                permissions = new List<AlliancesPlugin.Alliances.AccessLevel>(),
+                permissions = new List<AccessLevel>(),
                 Key = $"new{NewCount}",
                 taxRate = 0f,
                 permissionLevel = 100
@@ -370,7 +369,7 @@ else
         }
     }
 
-    public async Task Delete(AlliancesPlugin.Alliances.RankPermissions rank)
+    public async Task Delete(RankPermissions rank)
     {
         if (rank.Key == "Unranked")
         {
@@ -392,19 +391,19 @@ else
         }
     }
 
-    public DataGrid<AlliancesPlugin.Alliances.RankPermissions> GridRef { get; set; }
+    public DataGrid<RankPermissions> GridRef { get; set; }
 
     public int NewCount = 1;
 
     [Parameter]
     public Guid Id { get; set; }
 
-    public AlliancesPlugin.Alliances.Alliance alliance { get; set; }
+    public Alliance alliance { get; set; }
     public AlliancePackage package { get; set; }
 
-    public RadzenDataGrid<AlliancesPlugin.Alliances.RankPermissions> Grid { get; set; }
+    public RadzenDataGrid<RankPermissions> Grid { get; set; }
 
-    void OnChange(bool? value, AlliancesPlugin.Alliances.AccessLevel level, CellEditContext<AlliancesPlugin.Alliances.RankPermissions> cell)
+    void OnChange(bool? value, AccessLevel level, CellEditContext<RankPermissions> cell)
     {
         if (cell.Item.permissions.Contains(level))
         {
@@ -428,8 +427,8 @@ else
             alliance = temp.AllianceData;
             package = temp;
             Permissions.Clear();
-            var perms = Enum.GetValues(typeof(AlliancesPlugin.Alliances.AccessLevel));
-            foreach (AlliancesPlugin.Alliances.AccessLevel perm in perms)
+            var perms = Enum.GetValues(typeof(AccessLevel));
+            foreach (AccessLevel perm in perms)
             {
                 Permissions.Add(perm);
             }

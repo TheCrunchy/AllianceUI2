@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "3O5Qkz/2xBqR0LBpL8zgBTcTTOsZ5hGoa989JMy22mk=",
+  "Hash": "SYTDoIwAl9cH7icxVjjkV9WHR+gTEPArlgegrDShYtw=",
   "Source": "AllianceUI2",
   "BasePath": "_content/AllianceUI2",
   "Mode": "Default",
@@ -714,23 +714,6 @@
       "OriginalItemSpec": "C:\\Users\\Cameron\\.nuget\\packages\\blazorise\\1.2.0\\staticwebassets\\vendors\\sha512.js"
     },
     {
-      "Identity": "C:\\Users\\Cameron\\.nuget\\packages\\radzen.blazor\\4.6.3\\staticwebassets\\css\\dark.css",
-      "SourceId": "Radzen.Blazor",
-      "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\Cameron\\.nuget\\packages\\radzen.blazor\\4.6.3\\staticwebassets\\",
-      "BasePath": "_content/Radzen.Blazor",
-      "RelativePath": "css/dark.css",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\Cameron\\.nuget\\packages\\radzen.blazor\\4.6.3\\staticwebassets\\css\\dark.css"
-    },
-    {
       "Identity": "C:\\Users\\Cameron\\.nuget\\packages\\radzen.blazor\\4.6.3\\staticwebassets\\css\\dark-base.css",
       "SourceId": "Radzen.Blazor",
       "SourceType": "Package",
@@ -748,12 +731,12 @@
       "OriginalItemSpec": "C:\\Users\\Cameron\\.nuget\\packages\\radzen.blazor\\4.6.3\\staticwebassets\\css\\dark-base.css"
     },
     {
-      "Identity": "C:\\Users\\Cameron\\.nuget\\packages\\radzen.blazor\\4.6.3\\staticwebassets\\css\\default.css",
+      "Identity": "C:\\Users\\Cameron\\.nuget\\packages\\radzen.blazor\\4.6.3\\staticwebassets\\css\\dark.css",
       "SourceId": "Radzen.Blazor",
       "SourceType": "Package",
       "ContentRoot": "C:\\Users\\Cameron\\.nuget\\packages\\radzen.blazor\\4.6.3\\staticwebassets\\",
       "BasePath": "_content/Radzen.Blazor",
-      "RelativePath": "css/default.css",
+      "RelativePath": "css/dark.css",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -762,7 +745,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\Cameron\\.nuget\\packages\\radzen.blazor\\4.6.3\\staticwebassets\\css\\default.css"
+      "OriginalItemSpec": "C:\\Users\\Cameron\\.nuget\\packages\\radzen.blazor\\4.6.3\\staticwebassets\\css\\dark.css"
     },
     {
       "Identity": "C:\\Users\\Cameron\\.nuget\\packages\\radzen.blazor\\4.6.3\\staticwebassets\\css\\default-base.css",
@@ -782,12 +765,12 @@
       "OriginalItemSpec": "C:\\Users\\Cameron\\.nuget\\packages\\radzen.blazor\\4.6.3\\staticwebassets\\css\\default-base.css"
     },
     {
-      "Identity": "C:\\Users\\Cameron\\.nuget\\packages\\radzen.blazor\\4.6.3\\staticwebassets\\css\\humanistic.css",
+      "Identity": "C:\\Users\\Cameron\\.nuget\\packages\\radzen.blazor\\4.6.3\\staticwebassets\\css\\default.css",
       "SourceId": "Radzen.Blazor",
       "SourceType": "Package",
       "ContentRoot": "C:\\Users\\Cameron\\.nuget\\packages\\radzen.blazor\\4.6.3\\staticwebassets\\",
       "BasePath": "_content/Radzen.Blazor",
-      "RelativePath": "css/humanistic.css",
+      "RelativePath": "css/default.css",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -796,7 +779,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\Cameron\\.nuget\\packages\\radzen.blazor\\4.6.3\\staticwebassets\\css\\humanistic.css"
+      "OriginalItemSpec": "C:\\Users\\Cameron\\.nuget\\packages\\radzen.blazor\\4.6.3\\staticwebassets\\css\\default.css"
     },
     {
       "Identity": "C:\\Users\\Cameron\\.nuget\\packages\\radzen.blazor\\4.6.3\\staticwebassets\\css\\humanistic-base.css",
@@ -816,12 +799,12 @@
       "OriginalItemSpec": "C:\\Users\\Cameron\\.nuget\\packages\\radzen.blazor\\4.6.3\\staticwebassets\\css\\humanistic-base.css"
     },
     {
-      "Identity": "C:\\Users\\Cameron\\.nuget\\packages\\radzen.blazor\\4.6.3\\staticwebassets\\css\\material.css",
+      "Identity": "C:\\Users\\Cameron\\.nuget\\packages\\radzen.blazor\\4.6.3\\staticwebassets\\css\\humanistic.css",
       "SourceId": "Radzen.Blazor",
       "SourceType": "Package",
       "ContentRoot": "C:\\Users\\Cameron\\.nuget\\packages\\radzen.blazor\\4.6.3\\staticwebassets\\",
       "BasePath": "_content/Radzen.Blazor",
-      "RelativePath": "css/material.css",
+      "RelativePath": "css/humanistic.css",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -830,7 +813,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\Cameron\\.nuget\\packages\\radzen.blazor\\4.6.3\\staticwebassets\\css\\material.css"
+      "OriginalItemSpec": "C:\\Users\\Cameron\\.nuget\\packages\\radzen.blazor\\4.6.3\\staticwebassets\\css\\humanistic.css"
     },
     {
       "Identity": "C:\\Users\\Cameron\\.nuget\\packages\\radzen.blazor\\4.6.3\\staticwebassets\\css\\material-base.css",
@@ -850,12 +833,12 @@
       "OriginalItemSpec": "C:\\Users\\Cameron\\.nuget\\packages\\radzen.blazor\\4.6.3\\staticwebassets\\css\\material-base.css"
     },
     {
-      "Identity": "C:\\Users\\Cameron\\.nuget\\packages\\radzen.blazor\\4.6.3\\staticwebassets\\css\\software.css",
+      "Identity": "C:\\Users\\Cameron\\.nuget\\packages\\radzen.blazor\\4.6.3\\staticwebassets\\css\\material.css",
       "SourceId": "Radzen.Blazor",
       "SourceType": "Package",
       "ContentRoot": "C:\\Users\\Cameron\\.nuget\\packages\\radzen.blazor\\4.6.3\\staticwebassets\\",
       "BasePath": "_content/Radzen.Blazor",
-      "RelativePath": "css/software.css",
+      "RelativePath": "css/material.css",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -864,7 +847,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\Cameron\\.nuget\\packages\\radzen.blazor\\4.6.3\\staticwebassets\\css\\software.css"
+      "OriginalItemSpec": "C:\\Users\\Cameron\\.nuget\\packages\\radzen.blazor\\4.6.3\\staticwebassets\\css\\material.css"
     },
     {
       "Identity": "C:\\Users\\Cameron\\.nuget\\packages\\radzen.blazor\\4.6.3\\staticwebassets\\css\\software-base.css",
@@ -884,12 +867,12 @@
       "OriginalItemSpec": "C:\\Users\\Cameron\\.nuget\\packages\\radzen.blazor\\4.6.3\\staticwebassets\\css\\software-base.css"
     },
     {
-      "Identity": "C:\\Users\\Cameron\\.nuget\\packages\\radzen.blazor\\4.6.3\\staticwebassets\\css\\standard.css",
+      "Identity": "C:\\Users\\Cameron\\.nuget\\packages\\radzen.blazor\\4.6.3\\staticwebassets\\css\\software.css",
       "SourceId": "Radzen.Blazor",
       "SourceType": "Package",
       "ContentRoot": "C:\\Users\\Cameron\\.nuget\\packages\\radzen.blazor\\4.6.3\\staticwebassets\\",
       "BasePath": "_content/Radzen.Blazor",
-      "RelativePath": "css/standard.css",
+      "RelativePath": "css/software.css",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -898,7 +881,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\Cameron\\.nuget\\packages\\radzen.blazor\\4.6.3\\staticwebassets\\css\\standard.css"
+      "OriginalItemSpec": "C:\\Users\\Cameron\\.nuget\\packages\\radzen.blazor\\4.6.3\\staticwebassets\\css\\software.css"
     },
     {
       "Identity": "C:\\Users\\Cameron\\.nuget\\packages\\radzen.blazor\\4.6.3\\staticwebassets\\css\\standard-base.css",
@@ -916,6 +899,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\Cameron\\.nuget\\packages\\radzen.blazor\\4.6.3\\staticwebassets\\css\\standard-base.css"
+    },
+    {
+      "Identity": "C:\\Users\\Cameron\\.nuget\\packages\\radzen.blazor\\4.6.3\\staticwebassets\\css\\standard.css",
+      "SourceId": "Radzen.Blazor",
+      "SourceType": "Package",
+      "ContentRoot": "C:\\Users\\Cameron\\.nuget\\packages\\radzen.blazor\\4.6.3\\staticwebassets\\",
+      "BasePath": "_content/Radzen.Blazor",
+      "RelativePath": "css/standard.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\Users\\Cameron\\.nuget\\packages\\radzen.blazor\\4.6.3\\staticwebassets\\css\\standard.css"
     },
     {
       "Identity": "C:\\Users\\Cameron\\.nuget\\packages\\radzen.blazor\\4.6.3\\staticwebassets\\fonts\\MaterialIcons-Regular.woff",
@@ -1343,6 +1343,23 @@
       "OriginalItemSpec": "wwwroot\\css\\bootstrap\\bootstrap.min.css.map"
     },
     {
+      "Identity": "C:\\Users\\Cameron\\Documents\\3 Torch Plugins\\AllianceUI2\\AllianceUI2\\wwwroot\\css\\open-iconic\\FONT-LICENSE",
+      "SourceId": "AllianceUI2",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Cameron\\Documents\\3 Torch Plugins\\AllianceUI2\\AllianceUI2\\wwwroot\\",
+      "BasePath": "_content/AllianceUI2",
+      "RelativePath": "css/open-iconic/FONT-LICENSE",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\open-iconic\\FONT-LICENSE"
+    },
+    {
       "Identity": "C:\\Users\\Cameron\\Documents\\3 Torch Plugins\\AllianceUI2\\AllianceUI2\\wwwroot\\css\\open-iconic\\font\\css\\open-iconic-bootstrap.min.css",
       "SourceId": "AllianceUI2",
       "SourceType": "Discovered",
@@ -1443,23 +1460,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.woff"
-    },
-    {
-      "Identity": "C:\\Users\\Cameron\\Documents\\3 Torch Plugins\\AllianceUI2\\AllianceUI2\\wwwroot\\css\\open-iconic\\FONT-LICENSE",
-      "SourceId": "AllianceUI2",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Cameron\\Documents\\3 Torch Plugins\\AllianceUI2\\AllianceUI2\\wwwroot\\",
-      "BasePath": "_content/AllianceUI2",
-      "RelativePath": "css/open-iconic/FONT-LICENSE",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\css\\open-iconic\\FONT-LICENSE"
     },
     {
       "Identity": "C:\\Users\\Cameron\\Documents\\3 Torch Plugins\\AllianceUI2\\AllianceUI2\\wwwroot\\css\\open-iconic\\ICON-LICENSE",

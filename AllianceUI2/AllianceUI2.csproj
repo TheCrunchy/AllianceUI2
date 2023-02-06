@@ -4,6 +4,8 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+	  <IncludeSetACLProviderOnDestination>False</IncludeSetACLProviderOnDestination>
+	  <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
 
   <ItemGroup>
@@ -14,12 +16,6 @@
     <PackageReference Include="Microsoft.AspNet.WebApi.Core" Version="5.2.9" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
     <PackageReference Include="Radzen.Blazor" Version="4.6.3" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="AlliancesPlugin">
-      <HintPath>..\..\AlliancesPlugin\AlliancesPlugin\bin\Debug\AlliancesPlugin.dll</HintPath>
-    </Reference>
   </ItemGroup>
 
 </Project>

@@ -1,5 +1,4 @@
-﻿using AlliancesPlugin;
-using AlliancesPlugin.Alliances;
+﻿using AllianceUI2.Models;
 
 namespace AllianceUI2.Data
 {

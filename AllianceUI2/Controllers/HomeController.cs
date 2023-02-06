@@ -1,7 +1,7 @@
 ﻿using AllianceUI2.Data;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using AlliancesPlugin.Alliances;
+using AllianceUI2.Models;
 
 namespace AllianceUI2.Controllers
 {
@@ -19,23 +19,30 @@ namespace AllianceUI2.Controllers
         [HttpPost]
         public IActionResult PostAlliance([FromBody] object allianceJson)
         {
-               AlliancePackage alliance = JsonConvert.DeserializeObject<AlliancePackage>(allianceJson.ToString());
-            // AlliancePackage alliance = allianceJson;
-            alliance.AllianceData.CustomRankPermissions.Remove("Unranked");
-            alliance.AllianceData.CustomRankPermissions.Add("Unranked", alliance.AllianceData.UnrankedPerms);
-            foreach (var rank in alliance.AllianceData.CustomRankPermissions)
+            try
             {
-                while (rank.Value.taxRate < 1 && rank.Value.taxRate != 0)
+                AlliancePackage alliance = JsonConvert.DeserializeObject<AlliancePackage>(allianceJson.ToString());
+                // AlliancePackage alliance = allianceJson;
+                alliance.AllianceData.CustomRankPermissions.Remove("Unranked");
+                alliance.AllianceData.CustomRankPermissions.Add("Unranked", alliance.AllianceData.UnrankedPerms);
+                foreach (var rank in alliance.AllianceData.CustomRankPermissions)
                 {
-                    rank.Value.taxRate *= 100;
+                    while (rank.Value.taxRate < 1 && rank.Value.taxRate != 0)
+                    {
+                        rank.Value.taxRate *= 100;
+                    }
                 }
+                while (alliance.AllianceData.leadertax < 1 && alliance.AllianceData.leadertax != 0)
+                {
+                    alliance.AllianceData.leadertax *= 100;
+                }
+                dataService.StoreData(alliance);
+                return Ok(alliance);
             }
-            while (alliance.AllianceData.leadertax < 1 && alliance.AllianceData.leadertax != 0)
+            catch (Exception e)
             {
-                alliance.AllianceData.leadertax *= 100;
+                return Ok(e.ToString());
             }
-            dataService.StoreData(alliance);
-            return Ok(alliance);
         }
 
         [HttpGet]
