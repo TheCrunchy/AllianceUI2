@@ -27,6 +27,18 @@ namespace AllianceUI2.Data
     
         public void StoreData(AlliancePackage package)
         {
+            List<Guid> RemoveThese = new List<Guid>();
+            foreach (var item in Data.Values)
+            {
+                if (DateTime.Now >= item.ExpiresAt)
+                {
+                    RemoveThese.Add(item.EditId);
+                }
+            }
+            foreach (var item in RemoveThese)
+            {
+                Data.Remove(item);
+            }
             if (!Data.ContainsKey(package.EditId))
             {
                 Data.Add(package.EditId, package);
