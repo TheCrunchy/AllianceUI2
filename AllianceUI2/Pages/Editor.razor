@@ -86,6 +86,15 @@
                 </div>
             </div>
             <div class="row px-3">
+                <div class="col-md-6 col-lg-4 p-3">
+                    <RadzenCard>
+                        <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H4">Invite Faction by Tag</RadzenText>
+                        <TextEdit @bind-Value="@InviteBox" Class="w-100" MaskType="MaskType.RegEx" EditMask="[0-9a-zA-Z ]{0,10}$" />
+                        <RadzenButton Click=@(args => Invite()) Text="Invite" ButtonStyle="ButtonStyle.Success" Size="ButtonSize.Large" />
+                    </RadzenCard>
+                </div>
+                </div>
+            <div class="row px-3">
                 <div class="col-md-6 col-lg-12 p-3">
                     <RadzenButton Click=@(args => NewRank()) Icon="add" ButtonStyle="ButtonStyle.Success" Size="ButtonSize.Small" Text="Add" />
 
@@ -251,6 +260,13 @@ else
 
     public bool collapse1Visible = true;
     public bool collapse2Visible = true;
+
+    public string InviteBox;
+
+    public async Task Invite(){
+        alliance.EditorInvites.Add(InviteBox);
+         await JsRuntime.InvokeAsync<bool>("confirm", "Invite added");
+    }
 
     public async Task LeaderChanged(Object item){
         alliance.SupremeLeader = (ulong) item;
