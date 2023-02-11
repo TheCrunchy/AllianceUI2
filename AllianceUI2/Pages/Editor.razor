@@ -19,9 +19,6 @@
         <PageTitle>Alliance Editor</PageTitle>
         <div class="container-fluid">
             <RadzenCard>
-                SHIPYARD FEE
-                CHECK OTHER ALLIANCE NAMES BEFORE ACCEPTING EDITS ON THE SERVER
-                CHANGE LEADER
                 <RadzenText TextStyle="TextStyle.H5" TagName="TagName.H5" TextAlign="TextAlign.Center">Run this command ingame to confirm changes</RadzenText>
                 <RadzenText TextStyle="TextStyle.H6" TagName="TagName.H6" TextAlign="TextAlign.Center" contenteditable="false">!alliance accept</RadzenText>
                 <RadzenText TextStyle="TextStyle.H6" TagName="TagName.H6" TextAlign="TextAlign.Center" contenteditable="false">Session Expires in</RadzenText>
@@ -52,12 +49,12 @@
                 </div>
             </div>
             <div class="row px-3">
-                   <div class="col-md-6 col-lg-4 p-3">
+                <div class="col-md-6 col-lg-4 p-3">
                     <RadzenCard>
                         <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H4">Alliance Leader</RadzenText>
                         <RadzenDropDown AllowClear="true" TValue="string" Class="w-100"
-                                                        Data=@(package.SteamIdsAndNames.Select(x => new RankItem(){PlayerName = x.Value, SteamId = x.Key}).ToList().OrderByDescending(x => x.PlayerName)) TextProperty="PlayerName" ValueProperty="SteamId"
-                                                        Change=@(args => LeaderChanged(args)) Value="@alliance.SupremeLeader" />
+                                Data=@(package.SteamIdsAndNames.Select(x => new RankItem(){PlayerName = x.Value, SteamId = x.Key}).ToList().OrderByDescending(x => x.PlayerName)) TextProperty="PlayerName" ValueProperty="SteamId"
+                                Change=@(args => LeaderChanged(args)) Value="@alliance.SupremeLeader" />
                     </RadzenCard>
                 </div>
 
@@ -76,7 +73,7 @@
                     </RadzenCard>
                 </div>
 
-                     <div class="col-md-6 col-lg-12 p-3">
+                <div class="col-md-6 col-lg-12 p-3">
                     <RadzenCard>
                         <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H4">Description</RadzenText>
                         <TextEdit @bind-Value="@alliance.description" Class="w-100" MaskType="MaskType.RegEx" EditMask="[0-9a-zA-Z ]{0,2000}$" />
@@ -93,7 +90,7 @@
                         <RadzenButton Click=@(args => Invite()) Text="Invite" ButtonStyle="ButtonStyle.Success" Size="ButtonSize.Large" />
                     </RadzenCard>
                 </div>
-                </div>
+            </div>
             <div class="row px-3">
                 <div class="col-md-6 col-lg-12 p-3">
                     <RadzenButton Click=@(args => NewRank()) Icon="add" ButtonStyle="ButtonStyle.Success" Size="ButtonSize.Small" Text="Add" />
@@ -113,8 +110,8 @@ taxRate = x.Value.taxRate
 }).OrderByDescending(x => x.permissionLevel)"
                                   EditMode="Blazorise.DataGrid.DataGridEditMode.Popup"
                                   SelectionMode="Blazorise.DataGrid.DataGridSelectionMode.Single"
-                                  ShowPager="false"
-                                  ShowPageSizes="false"
+                                  ShowPager="true"
+                                  ShowPageSizes="true"
                                   Editable="true"
                                   Responsive="true"
                                   Sortable="true"
@@ -180,8 +177,8 @@ taxRate = x.Value.taxRate
                                   Data="@package.SteamIdsAndNames.Select(x => new RankItem(){ SteamId = x.Key, PlayerName = x.Value}).ToList()"
                                   EditMode="Blazorise.DataGrid.DataGridEditMode.Popup"
                                   SelectionMode="Blazorise.DataGrid.DataGridSelectionMode.Single"
-                                  ShowPager="false"
-                                  ShowPageSizes="false"
+                                  ShowPager="true"
+                                  ShowPageSizes="true"
                                   Editable="true"
                                   Responsive="true"
                                   Sortable="true"
@@ -238,6 +235,40 @@ taxRate = x.Value.taxRate
                                     </ChildContent>
                                 </DataGrid>
                             </RadzenAccordionItem>
+                            <RadzenAccordionItem Text="Member Factions" Icon="groups" Selected="true">
+                                <DataGrid TItem="RankItem"
+                                  Data="@package.FactionNames.Select(x => new RankItem(){  SteamId = (ulong) x.Key, PlayerName = x.Value}).ToList()"
+                                  EditMode="Blazorise.DataGrid.DataGridEditMode.Popup"
+                                  SelectionMode="Blazorise.DataGrid.DataGridSelectionMode.Single"
+                                  ShowPager="true"
+                                  ShowPageSizes="true"
+                                  Editable="true"
+                                  Responsive="true"
+                                  Sortable="true"
+                                  Striped="true"
+                                  PageSize="50"
+                                  CommandMode="DataGridCommandMode.Commands"
+                                  SubmitFormOnEnter="false"
+                                  Filterable="true" PopupSize="Blazorise.ModalSize.ExtraLarge">
+                                    <ChildContent>
+                                        <DataGridCommandColumn TItem="RankItem" DeleteCommandAllowed="true">
+                                            <CancelCommandTemplate>
+                                            </CancelCommandTemplate>
+                                            <SaveCommandTemplate>
+                                            </SaveCommandTemplate>
+                                            <NewCommandTemplate>
+                                            </NewCommandTemplate>
+                                            <EditCommandTemplate>
+                                            </EditCommandTemplate>
+                                            <DeleteCommandTemplate>
+                                                <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="delete" Click="@(args => alliance.EditorKicks.Add(context.Item.PlayerName))"></RadzenButton>
+                                            </DeleteCommandTemplate>
+                                        </DataGridCommandColumn>
+                                        <DataGridColumn TItem="RankItem" Field="PlayerName" Caption="Faction Name" Editable="false">
+                                        </DataGridColumn>
+                                    </ChildContent>
+                                </DataGrid>
+                            </RadzenAccordionItem>
                         </Items>
                     </RadzenAccordion>
                 </div>
@@ -263,13 +294,15 @@ else
 
     public string InviteBox;
 
-    public async Task Invite(){
+    public async Task Invite()
+    {
         alliance.EditorInvites.Add(InviteBox);
-         await JsRuntime.InvokeAsync<bool>("confirm", "Invite added");
+        await JsRuntime.InvokeAsync<bool>("confirm", "Invite added");
     }
 
-    public async Task LeaderChanged(Object item){
-        alliance.SupremeLeader = (ulong) item;
+    public async Task LeaderChanged(Object item)
+    {
+        alliance.SupremeLeader = (ulong)item;
         return;
     }
 
