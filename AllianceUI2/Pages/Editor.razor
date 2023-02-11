@@ -76,7 +76,7 @@
                 <div class="col-md-6 col-lg-12 p-3">
                     <RadzenCard>
                         <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H4">Description</RadzenText>
-                        <TextEdit @bind-Value="@alliance.description" Class="w-100" MaskType="MaskType.RegEx" EditMask="[0-9a-zA-Z ]{0,2000}$" />
+                        <TextEdit @bind-Value="@alliance.description" Text="@alliance.description" Class="w-100" MaskType="MaskType.RegEx" EditMask="[0-9a-zA-Z ]{0,2000}$" />
 
                     </RadzenCard>
 
@@ -86,7 +86,7 @@
                 <div class="col-md-6 col-lg-4 p-3">
                     <RadzenCard>
                         <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H4">Invite Faction by Tag</RadzenText>
-                        <TextEdit @bind-Value="@InviteBox" Class="w-100" MaskType="MaskType.RegEx" EditMask="[0-9a-zA-Z ]{0,10}$" />
+                        <TextEdit @ref="@TextRef" Class="w-100" MaskType="MaskType.RegEx" EditMask="[0-9a-zA-Z ]{0,10}$" />
                         <RadzenButton Click=@(args => Invite()) Text="Invite" ButtonStyle="ButtonStyle.Success" Size="ButtonSize.Large" />
                     </RadzenCard>
                 </div>
@@ -261,7 +261,7 @@ taxRate = x.Value.taxRate
                                             <EditCommandTemplate>
                                             </EditCommandTemplate>
                                             <DeleteCommandTemplate>
-                                                <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="delete" Click="@(args => alliance.EditorKicks.Add(context.Item.PlayerName))"></RadzenButton>
+                                                <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="delete" Click="@(args => {alliance.EditorKicks.Add(context.Item.PlayerName); package.FactionNames.Remove((long)context.Item.SteamId); context.Clicked.InvokeAsync();})"></RadzenButton>
                                             </DeleteCommandTemplate>
                                         </DataGridCommandColumn>
                                         <DataGridColumn TItem="RankItem" Field="PlayerName" Caption="Faction Name" Editable="false">
@@ -292,11 +292,11 @@ else
     public bool collapse1Visible = true;
     public bool collapse2Visible = true;
 
-    public string InviteBox;
+    public TextEdit TextRef { get; set; }
 
     public async Task Invite()
     {
-        alliance.EditorInvites.Add(InviteBox);
+        alliance.EditorInvites.Add(TextRef.Text);
         await JsRuntime.InvokeAsync<bool>("confirm", "Invite added");
     }
 
