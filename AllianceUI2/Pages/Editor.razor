@@ -4,7 +4,7 @@
 @page "/alliances/edit/{Id:guid}"
 @inject IJSRuntime JsRuntime
 @inject TooltipService tooltipService
-
+<PageTitle>Alliance Editor</PageTitle>
 @if (@HasData)
 {
     @if (DateTime.Now >= package.ExpiresAt)
@@ -30,13 +30,13 @@
                 <div class="col-md-6 col-lg-4 p-3">
                     <RadzenCard>
                         <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H4">Alliance Name</RadzenText>
-                        <TextEdit @bind-Text="@alliance.name" MaskType="MaskType.RegEx" EditMask="[0-9a-zA-Z]{0,50}$" Class="w-100" />
+                        <TextEdit @bind-Text="@alliance.name" MaskType="MaskType.RegEx" EditMask="[0-9a-zA-Z]{1,50}$" Class="w-100" />
                     </RadzenCard>
                 </div>
                 <div class="col-md-6 col-lg-4 p-3">
                     <RadzenCard>
                         <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H4">Leader Title</RadzenText>
-                        <TextEdit @bind-Text="@alliance.LeaderTitle" MaskType="MaskType.RegEx" EditMask="[0-9a-zA-Z ]{0,50}$" Class="w-100" />
+                        <TextEdit @bind-Text="@alliance.LeaderTitle" MaskType="MaskType.RegEx" EditMask="[0-9a-zA-Z ]{1,50}$" Class="w-100" />
                         @*  <RadzenTextBox @bind-Value="@alliance.LeaderTitle" Class="w-100" />*@
                     </RadzenCard>
                 </div>
